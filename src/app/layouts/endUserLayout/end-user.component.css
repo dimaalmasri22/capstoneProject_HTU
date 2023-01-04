@@ -1,0 +1,17 @@
+/* content */
+.content {
+    flex: 1;
+}
+
+
+/*ubdate*/
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+ position: relative;
+ width: 100%;
+ overflow: auto;
+ /* border: 1px solid black; */
+}
+

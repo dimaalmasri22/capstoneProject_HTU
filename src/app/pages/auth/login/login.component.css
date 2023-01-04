@@ -1,0 +1,38 @@
+.container {
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: chocolate;
+}
+.inputField {
+  width: 40%;
+}
+button {
+  width: 10%;
+  font-weight: 700;
+  background-color:var(--cultured-2);
+}
+button:hover {
+  background-color: var(--cadet-blue-crayola);
+}
+
+@media (max-width:820px) {
+.inputField{
+    width: 100%;
+}
+button {
+    width: 100%;
+}
+}

@@ -1,0 +1,28 @@
+.toolbar {
+  position: fixed;
+  display: flex;
+  justify-content:space-between;
+  background-color:white;
+  font-family: "Playfair Display", serif;
+  z-index: 1;
+  max-height: 20vh;
+
+}
+.toolbar div {
+  display: flex;
+  justify-content: space-evenly;
+  column-gap: 3rem;
+}
+
+
+.list a {
+  text-decoration: none;
+  color: black;
+  font-size: 0.8rem;
+}
+  .toolbar .login a {
+    
+  color: black;
+  font-size: 1.3rem;
+ }
+
