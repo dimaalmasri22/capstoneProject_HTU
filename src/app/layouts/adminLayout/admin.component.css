@@ -1,0 +1,45 @@
+/* container */
+.navbar-container{
+    position: relative;
+}
+/* top Navbar */
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+.navbar-brand {
+  text-decoration: none;
+  color: white;
+}
+.inputSearch {
+    align-self: flex-start;
+   
+}
+mat-toolbar {
+ overflow: hidden;
+ background-color: #FCA311;
+}
+
+/* sidenav */
+.sidenav {
+    width: 250px;
+    height: 100%;
+    position:fixed;
+    top: 0;
+    left: 0;
+background-color: #E5E5E5;
+padding: 15rem 0 0 3rem;
+   
+}
+.sidenav div {
+    display: grid;
+    grid-template-columns: repeat(2,0.4fr);
+    grid-template-rows: 80px;
+    
+}
+.sidenav div a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+
+}

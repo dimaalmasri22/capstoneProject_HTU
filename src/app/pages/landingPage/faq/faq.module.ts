@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FAQRoutingModule } from './faq-routing.module';
 import { FAQComponent } from './faq/faq.component';
+import { MaterialModule } from 'src/app/lib/components/material/material.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FAQComponent } from './faq/faq.component';
   ],
   imports: [
     CommonModule,
-    FAQRoutingModule
+    FAQRoutingModule,
+    MaterialModule
   ]
 })
 export class FAQModule { }

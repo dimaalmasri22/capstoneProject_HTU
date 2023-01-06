@@ -1,0 +1,6 @@
+.container {
+    padding: 3rem;
+}
+.container .question {
+    font-size: 1.2rem;
+}

@@ -1,0 +1,41 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+     column-gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+.column  {
+    margin: 2rem 0;
+  flex: 1;
+}
+.formField {
+    padding: 2rem;
+    width: auto;
+   
+}
+mat-form-field {
+    width: 100%;
+
+}
+.btns {
+    display: flex;
+    justify-content: center;
+    
+}
+.btns button {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 20%;
+}
+
+.sectors {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+}
+.sectors button {
+    justify-self: center;
+}
+

@@ -4,7 +4,7 @@ import { AdminComponent } from './layouts/adminLayout/admin.component';
 import { EndUserComponent } from './layouts/endUserLayout/end-user.component';
 import { AuthGuard } from './lib/guards/auth.guard';
 import { NotloggedinGuard } from './lib/guards/notloggedin.guard';
-import { HomeComponent } from './pages/home/home.component';
+
 
 const routes: Routes = [
   { path: '', component: EndUserComponent, children:[
@@ -16,8 +16,8 @@ const routes: Routes = [
   {path:'admin',component:AdminComponent,children:[
     {path:'',loadChildren:()=>import('./pages/admin/all-startups/all-startups.module').then((m)=>m.AllStartupsModule)},
     {path:'startupForm',loadChildren:()=>import('./pages/admin/add-startup/add-startup.module').then((m)=>m.AddStartupModule)},
-    {path:'sectorForm',loadChildren:()=>import('./pages/admin/add-sector/add-sector.module').then((m)=>m.AddSectorModule)},
-  ]}
+   
+  ],canLoad:[AuthGuard]}
   
 ];
 

@@ -10,7 +10,9 @@ userState$= this.fireAuth.authState;
   constructor(private fireAuth:AngularFireAuth) { }
   signIn(email:string, password:string){
     return this.fireAuth.signInWithEmailAndPassword(email, password);
-
   }
   
+ signOut(){
+  return this.fireAuth.signOut();
+ }
 }

@@ -18,15 +18,16 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     let guardObsv = this.authService.userState$.pipe(
       map((value) => {
-        if (!value) return true;
+        if (value) return true;
         else {
           //navigate to auth/login
-          this.router.navigate(['admin/']);
+          this.router.navigate(['auth/']);
 
           return false;
         }
       })
     );
+    
     return guardObsv;
   }
 }

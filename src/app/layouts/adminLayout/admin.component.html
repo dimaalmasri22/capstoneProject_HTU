@@ -1,2 +1,49 @@
-<p>admin works!</p>
-<app-footer></app-footer>
+<div class="navbar-container">
+  <mat-sidenav-container class="navbarSidenavContainer">
+    <!-- side nav -->
+    <mat-sidenav #drawer class="sidenav" mode="side" >
+      <div>
+        <mat-icon>home</mat-icon>
+
+        <a class="nav-link" routerLink="/">Home</a>
+      </div>
+
+      <div>
+        <mat-icon>dashboard</mat-icon>
+        <a class="nav-link" routerLink="/admin">Dashboard</a>
+      </div>
+      <div>
+        <mat-icon>add</mat-icon>
+        <a class="nav-link" routerLink="/admin/startupForm">startup</a>
+      </div>
+      <div>
+        <mat-icon>add</mat-icon>
+     <button mat-stroked-button class="nav-link" (click)="addingSector()">Sector</button>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- Top navbar-->
+      <mat-toolbar class="navbar">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- spacer  -->
+        <span class="navbar-spacer"></span>
+        
+        <!-- logoWebsite -->
+        <a class="navbar-brand" routerLink="/"
+          ><img
+            src="/assets/icons/LogoMakr-0QyaYX.png"
+            alt="icon"
+            width="130px"
+            height="25px"
+        /></a>
+         <!-- spacer  -->
+        <span class="navbar-spacer"></span>
+        <button mat-stroked-button (click)="logout()">log out</button>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -5,12 +5,13 @@ import { EndUserComponent } from './endUserLayout/end-user.component';
 import { FooterModule } from '../lib/components/footer/footer.module';
 import { HeaderModule } from '../lib/components/header/header.module';
 import { AppRoutingModule } from '../app-routing.module';
+import { MaterialModule } from '../lib/components/material/material.module';
 
 
 
 
 @NgModule({
   declarations: [AdminComponent, EndUserComponent],
-  imports: [CommonModule, FooterModule, HeaderModule, AppRoutingModule],
+  imports: [CommonModule, AppRoutingModule, FooterModule, HeaderModule,MaterialModule],
 })
 export class LayoutsModule {}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AllStartupsRoutingModule } from './all-startups-routing.module';
 import { AllStartupsComponent } from './all-startups/all-startups.component';
+import { MaterialModule } from 'src/app/lib/components/material/material.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AllStartupsComponent } from './all-startups/all-startups.component';
   ],
   imports: [
     CommonModule,
-    AllStartupsRoutingModule
+    AllStartupsRoutingModule,
+    MaterialModule
   ]
 })
 export class AllStartupsModule { }

@@ -9,8 +9,7 @@ import { AuthService } from 'src/app/lib/services/auth/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  massege:any;
-  bad:any='success'
+
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
@@ -36,28 +35,9 @@ export class LoginComponent {
         //navigate to admin/
         this.router.navigate(['/admin/']);
       })
-      .catch(() => {
-        this.massege='ree';
+      .catch((error) => {
+        console.log(error);
       });
-      // .((error: any) => {
-      //   console.log(error);
-      // });
-      // .subscribe({
-      //   next: () => {
-      //     this.router.navigate(['/admin']);
-      //   },
-      //   error: () => {
-      //     console.log(this.form.controls);
-      //   },
-      // });
+   
   }
 }
-// .then((user) => {
-        //navigate to admin/
-        // this.router.navigate(['admin/']);
-
-        // console.log(user);
-      // })
-      // .catch((error) => {
-        // console.log(error);
-      // });
