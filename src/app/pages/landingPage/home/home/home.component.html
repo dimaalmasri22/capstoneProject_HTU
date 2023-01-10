@@ -1,3 +1,4 @@
+  <div  class="content">
   <div class="intro">
   <mat-card class="card">
     <h1>Lorem, ipsum dolor..</h1>
@@ -6,77 +7,40 @@
     </p>
     </mat-card>
   </div>
+	<div >
+  <div class="threecards" >
   
+	<mat-card class="threeCard" >
+		
+		<mat-card-header class="textH">startups</mat-card-header>
+    <mat-card-content class="textC">351</mat-card-content>
+	</mat-card>
+	<mat-card class="threeCard">
+		<mat-card-header class="textH">sectors</mat-card-header>
+     <mat-card-content class="textC">351</mat-card-content>
+	</mat-card>
+	<mat-card class="threeCard">
+		<mat-card-header class="textH">sectors</mat-card-header>
+     <mat-card-content class="textC">351</mat-card-content>
+	</mat-card>
+  </div>
+  <mat-form-field appearance="outline" class="filter">
+  <mat-label>Filter by sector</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let sector of sectors" [value]="sector.sector " (click)="filterStartups(sector.sector)">
+      {{sector.sector}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 <div class="container">
 <div   class="grid-wrapper">
-	<mat-card class="card" *ngFor="let startup of startups"><img src="{{ startup.logo }}"  /></mat-card>
-	<!-- <div class="tall">
-		
-	</div>
-	<div>
-		
-	</div>
-	<div class="tall">
-
-	</div>
-	<div class="wide">
-		
-	</div>
-	<div>
-		
-	</div>
-	<div class="tall">
-		
-	</div>
-	<div class="big">
-		
-	</div>
-	<div>
-		
-	</div>
-	<div class="wide">
-		
-	</div>
-	<div class="big">
-		
-	</div>
-	<div class="tall">
-	
-	</div>
-	<div>
-		
-	</div>
-	<div>
-		
-	</div>
-	<div>
-		
-	</div>
-	<div>
-		
-	</div>
-	<div class="wide">
-		
-	</div>
-	<div>
-		
-	</div>
-	<div>
-		
-	</div>
-	<div class="wide">
-		
-	</div>
-	<div>
-		
-	</div>
-	<div class="wide">
-		
-	</div>
-	<div >
-		
-	</div> -->
+	<mat-card  *ngFor="let startup of startups" class="cards"><img mat-card-image src="{{ startup.logo }}" height="150px" width="150px" />
+	<mat-card-actions>
+		<button mat-raised-button>Learn More</button>
+	</mat-card-actions>
+	</mat-card>
 
 </div>
 
+</div>
 </div>

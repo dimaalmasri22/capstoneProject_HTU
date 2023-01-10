@@ -12,14 +12,12 @@ import{AngularFireAuthModule}from '@angular/fire/compat/auth'
 import { AuthRoutingModule } from './pages/auth/auth-routing.module';
 import {AngularFirestoreModule}from '@angular/fire/compat/firestore';
 import { LayoutsModule } from './layouts/layouts.module';
-import { DeleteComponent } from './pages/admin/delete/delete.component';
-import { EditComponent } from './pages/admin/edit/edit.component';
 import { AddSectorComponent } from './pages/admin/add-sector/add-sector.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, DeleteComponent, EditComponent, AddSectorComponent],
+  declarations: [AppComponent, AddSectorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

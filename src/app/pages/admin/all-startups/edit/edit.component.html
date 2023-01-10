@@ -1,7 +1,8 @@
-<form class="formField" [formGroup]="form">
+<div class="container" *ngIf="startup$ | async as startup">
+<form #form="ngForm" (ngSubmit)="editStartup(form.value,startup.sector)">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>startup Information</mat-card-title>
+      <mat-card-title>Updating startup Information </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -12,7 +13,7 @@
               matInput
               type="text"
               class="inputField"
-              formControlName="companyName"
+             name="firstName" name="companyName" [(ngModel)]='startup.companyName'
             />
             <mat-error>startup Name is required</mat-error>
           </mat-form-field>
@@ -20,19 +21,14 @@
         <div class="column">
           <mat-form-field appearance="outline">
             <mat-label>Logo Image</mat-label>
-            <input matInput type="url" formControlName="logo" />
-            <mat-error *ngIf="urlImg?.hasError('required')"
-              >Image Url is required</mat-error
-            >
-            <mat-error *ngIf="urlImg?.hasError('insecureUrl')"
-              >Image Url must start with https</mat-error
-            >
+            <input matInput type="url" [(ngModel)]='startup.logo' name="logo" />
+            
           </mat-form-field>
         </div>
         <div class="column">
           <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
-            <input matInput type="text" formControlName="city" />
+            <input matInput type="text" name="city" [(ngModel)]='startup.city' />
             <mat-error>city is required</mat-error>
           </mat-form-field>
         </div>
@@ -41,7 +37,7 @@
         <div class="column">
           <mat-form-field appearance="outline">
             <mat-label>Founder Name</mat-label>
-            <input matInput type="text" formControlName="founder" />
+            <input matInput type="text" name="founder" [(ngModel)]='startup.founder' />
             <mat-error>Founder Name is required</mat-error>
           </mat-form-field>
         </div>
@@ -52,7 +48,8 @@
               matInput
               type="number"
               min="0"
-              formControlName="numOfEmployees"
+              name="numOfEmployees"
+             [(ngModel)]='startup.numOfEmployees'
             />
           </mat-form-field>
         </div>
@@ -63,7 +60,8 @@
               matInput
               type="number"
               min="0"
-              formControlName="yearOfEstablishment"
+              name="yearOfEstablishment"
+             [(ngModel)]='startup.yearOfEstablishment'
             />
             <mat-error>Year Of Establishment is required</mat-error>
           </mat-form-field>
@@ -73,36 +71,25 @@
         <div class="column">
           <mat-form-field appearance="outline">
             <mat-label>Website Url</mat-label>
-            <input matInput type="url" formControlName="website" />
-            <mat-error *ngIf="urlWeb?.hasError('required')"
-              >Url is required</mat-error
-            >
-            <mat-error *ngIf="urlWeb?.hasError('insecureUrl')"
-              >Website must start with https</mat-error
-            >
+            <input matInput type="url" name="website" [(ngModel)]='startup.website' />
+           
           </mat-form-field>
         </div>
         <div class="column">
           <mat-form-field appearance="outline">
             <mat-label>Email Address</mat-label>
-            <input matInput type="email" formControlName="email" />
+            <input matInput type="email"  name="email" [(ngModel)]='startup.email' />
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="column">
-          <ng-container>
+          
             <h4>Select sectors</h4>
-            <ng-container
-              *ngFor="let sector of sectorCheckbox; let i = index"
-              ;
-            >
+            <div *ngIf="startup.sector">
+                  <mat-checkbox  *ngFor="let sector of sectorCheckbox" [ngModel]="sector" name="sector" >{{sector.sector}}</mat-checkbox>
+            </div>
 
-               
-                  <mat-checkbox  [checked]="sector.isSelected" (change)="onChange($event,i,sector.sector)" >{{sector.sector}}</mat-checkbox>
-           
-            </ng-container>
-          </ng-container>
         </div>
       </div>
     </mat-card-content>
@@ -110,12 +97,13 @@
    
       <button
         [disabled]="form.invalid"
-        color="perimary"
+        color="primary"
         mat-raised-button
-        (click)="submit()"
+        [disabled]="form.invalid"
       >
         Submit
       </button>
     </mat-card-actions>
   </mat-card>
 </form>
+</div>

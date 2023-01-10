@@ -1,3 +1,6 @@
+import { BooleanInput } from "@angular/cdk/coercion";
+
 export interface Sectors {
-   sector:string}
+   sector:string,
+isSelected?:BooleanInput}
 

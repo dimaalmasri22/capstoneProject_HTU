@@ -13,6 +13,7 @@ import {  MatSidenavModule } from '@angular/material/sidenav';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const material = [
   MatToolbarModule,
@@ -27,7 +28,8 @@ const material = [
   MatSidenavModule,
   ReactiveFormsModule,
   MatDialogModule,
-MatSelectModule
+  MatSelectModule,
+  MatCheckboxModule,
 ];
 
 

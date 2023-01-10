@@ -23,6 +23,7 @@ export class AddSectorComponent {
   ) {}
   form = this.fb.group({
     sector: [''],
+    isSelected:[true]
   });
 
   submit() {

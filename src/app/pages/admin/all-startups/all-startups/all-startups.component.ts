@@ -1,13 +1,12 @@
 
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { startup } from 'src/app/lib/interfaces/startup';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
-import { DeleteComponent } from '../../delete/delete.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { JsonPipe } from '@angular/common';
 import { Sectors } from 'src/app/lib/interfaces/sector';
+import { DeleteComponent } from '../delete/delete.component';
 @Component({
   selector: 'app-all-startups',
   templateUrl: './all-startups.component.html',
@@ -15,7 +14,12 @@ import { Sectors } from 'src/app/lib/interfaces/sector';
 })
 export class AllStartupsComponent implements OnInit {
   // startups: startup[] = [];
-  sectors: Sectors[] = [];
+  sectors: Sectors[] = [
+    {
+      sector:'',
+      isSelected:false,
+    }
+  ];
 
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
@@ -34,13 +38,13 @@ export class AllStartupsComponent implements OnInit {
   constructor(private CRUDService: CRUDService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getStartups();
     this.getSectors();
+    this.getStartups();
+   
   }
   getStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
       // this.startups = response;
-      
 
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
@@ -69,7 +73,14 @@ export class AllStartupsComponent implements OnInit {
   // get sectors in filter
   getSectors() {
     this.CRUDService.getSector().subscribe((response) => {
-      this.sectors=response
+    
+       this.sectors = response;
+     
     });
+  }
+  filterStartups(sector:string){
+
+    this.CRUDService.filterStartups(sector).subscribe((response) =>{ this.dataSource = new MatTableDataSource(response);
+    this.dataSource.paginator = this.paginator;})
   }
 }

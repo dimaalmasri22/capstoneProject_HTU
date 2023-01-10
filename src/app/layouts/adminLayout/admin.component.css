@@ -43,3 +43,10 @@ padding: 15rem 0 0 3rem;
     font-weight: bold;
 
 }
+.addSectorStyle {
+    text-decoration: none;
+
+}
+.addSectorStyle:hover{
+    cursor: pointer;
+}

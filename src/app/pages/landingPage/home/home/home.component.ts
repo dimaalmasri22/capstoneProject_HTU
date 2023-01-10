@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 
@@ -9,14 +10,28 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 })
 export class HomeComponent implements OnInit {
   startups: startup[] = [];
-  constructor(private startupService: CRUDService) {}
+  sectors: Sectors[] = [];
+  constructor(private CRUDService: CRUDService) {}
   ngOnInit(): void {
     this.getStartups();
+    this.getSectors();
   }
   getStartups() {
-    this.startupService.getStartup().subscribe((response) => {
+    this.CRUDService.getStartup().subscribe((response) => {
       console.log(response);
       this.startups = response;
     });
+  }
+
+  getSectors() {
+    this.CRUDService.getSector().subscribe((response) => {
+      this.sectors = response;
+    });
+  }
+  filterStartups(sector: string) {
+ 
+    this.CRUDService.filterStartups(sector).subscribe(
+      (response) => (this.startups=response)
+    );
   }
 }

@@ -16,8 +16,8 @@ export class DeleteComponent {
   ) {}
 
   confirm() {
-    console.log(this.data);
-    //delete student
+    
+    //delete startup
     this.startupsService.deleteStartup(this.data.id).subscribe((_) => {
       this.dialogRef.close(true);
     });

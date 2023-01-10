@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0!important; font-family: 'Playfair Display', serif ! important; }
+body{ 
+    margin: 0!important; font-family: 'Playfair Display', serif ! important; }
 :root {
 --cultured: #f8f9faff;
 --cultured-2: #e9ecefff;
