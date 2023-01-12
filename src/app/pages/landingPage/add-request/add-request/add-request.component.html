@@ -18,7 +18,7 @@
           </mat-form-field>
         </div>
         <div class="column">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Logo Image</mat-label>
             <input matInput type="url" formControlName="logo" />
             <mat-error *ngIf="urlImg?.hasError('required')"
@@ -66,6 +66,19 @@
               formControlName="yearOfEstablishment"
             />
             <mat-error>Year Of Establishment is required</mat-error>
+          </mat-form-field>
+        </div>
+          <div class="column">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              type="tel"
+              min="0"
+              formControlName="phone"
+              placeholder="+962"
+            />
+           
           </mat-form-field>
         </div>
       </div>

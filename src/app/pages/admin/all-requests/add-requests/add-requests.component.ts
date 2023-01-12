@@ -17,8 +17,6 @@ export class AddRequestsComponent {
   ) {}
 
   confirm() {
-    
-    //delete student
     this.startupsService.approveRequest(this.data.id,this.data.data)
   }
 }

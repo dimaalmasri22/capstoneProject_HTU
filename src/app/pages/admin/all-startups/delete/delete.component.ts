@@ -11,15 +11,17 @@ export class DeleteComponent {
   constructor(
     private startupsService: CRUDService,
     private dialogRef: MatDialogRef<DeleteComponent>,
-    public authService:AuthService,
+    public authService: AuthService,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {}
 
   confirm() {
-    
     //delete startup
     this.startupsService.deleteStartup(this.data.id).subscribe((_) => {
       this.dialogRef.close(true);
     });
+  }
+  closeTheDialogue() {
+    this.dialogRef.close(true);
   }
 }

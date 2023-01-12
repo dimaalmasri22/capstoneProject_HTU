@@ -87,7 +87,7 @@
           
             <h4>Select sectors</h4>
             <div *ngIf="startup.sector">
-                  <mat-checkbox  *ngFor="let sector of sectorCheckbox" [ngModel]="sector" name="sector" >{{sector.sector}}</mat-checkbox>
+                  <mat-checkbox  *ngFor="let sector of sectorCheckbox"  [checked]="sector.isSelected"  (change)="checkSector(sector)" name="sector" >{{sector.sector.sector}}</mat-checkbox>
             </div>
 
         </div>

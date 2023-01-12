@@ -29,9 +29,16 @@ export class HomeComponent implements OnInit {
     });
   }
   filterStartups(sector: string) {
- 
     this.CRUDService.filterStartups(sector).subscribe(
-      (response) => (this.startups=response)
+      (response) => (this.startups = response)
     );
+  }
+  reshowStartups() {
+    this.CRUDService.getStartup().subscribe((response) => {
+      this.startups = response;
+    });
+  }
+  navigateToInfo(startup:startup){
+console.log(startup);
   }
 }

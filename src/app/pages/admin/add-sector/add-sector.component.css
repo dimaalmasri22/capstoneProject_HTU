@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 2rem;
+    
+}
+h1{
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+.inputField {
+    width: 100%;
+}
+.close {
+  position:absolute;
+  top: 0rem;
+  transform: translateY(-55%);
+  right: 0.5rem;
+  cursor:pointer;
+
+}

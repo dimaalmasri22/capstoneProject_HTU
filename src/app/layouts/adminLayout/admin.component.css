@@ -22,27 +22,42 @@ mat-toolbar {
 /* sidenav */
 .sidenav {
     width: 250px;
-    height: 100%;
+    /* min-height: 100vh; */
     position:fixed;
     top: 0;
     left: 0;
 background-color: #E5E5E5;
-padding: 15rem 0 0 3rem;
-   
 }
-.sidenav div {
-    display: grid;
-    grid-template-columns: repeat(2,0.4fr);
-    grid-template-rows: 80px;
-    
+.sideNavContainer{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
+.sidenav div div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+margin: 2rem 0;
+}
+
 .sidenav div a {
     text-decoration: none;
     color: black;
     font-size: 1rem;
     font-weight: bold;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5rem;
 }
+.sidenav div a .dashboard {
+    position: relative;
+    left: 1.3rem;
+}
+.sidenav div a .notifications {
+    position: relative;
+    left: 0.75rem;
+}  
 .addSectorStyle {
     text-decoration: none;
 

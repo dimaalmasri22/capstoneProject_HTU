@@ -53,6 +53,7 @@ export class RequestsComponent {
   addStartupRequest(id: string,data:startup[]) {
     let dialogRef = this.dialog.open(AddRequestsComponent, {
       width: '500px',
+      height: '250px',
       data: { id: id,data: data },
     });
     dialogRef.afterClosed().subscribe((result) => {

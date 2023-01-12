@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
@@ -12,7 +12,8 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
-  sectorCheckbox: Sectors[] = [];
+  sectors: Sectors[] = [];
+  sectorCheckbox: { sector: Sectors; isSelected: boolean }[] = [];
   startup?: startup;
   startup$!: Observable<startup | undefined>;
   id!: string;
@@ -21,55 +22,54 @@ export class EditComponent implements OnInit {
     private CRUDservice: CRUDService,
     private router: Router
   ) {
-    // this.route.paramMap.subscribe((response)=> {
-    //      this.id = response.get('id');
-    //      //get students
-    //      this.student = { ... this.studentService.getStudentById(this.id)};
-
-    // });
+   
 
     this.startup$ = this.route.paramMap.pipe(
       switchMap((value) => {
         this.id = value.get('id') + '';
         return this.CRUDservice.getStartupById(this.id);
       })
-      
     );
-   
-   
   }
-  ngOnInit():void{
-    this.getSectors();
 
+  ngOnInit(): void {
+    this.startup$.subscribe((value) => {
+      this.startup = value;
+
+      this.getSectors(this.startup?.sector ?? []);
+    });
   }
-  editStartup(startup: any,sectorsStartup: any):void {
-    this.CRUDservice.updateStartup(this.id, startup);
+  editStartup(startup: any, sectorsStartup: any): void {
+
+    if(this.startup && this.startup.sector){
+    this.startup.sector = this.sectorCheckbox
+      .filter((val) => val.isSelected)
+      .map((e) => e.sector.sector);
+    }console.log(this.startup)
+    this.CRUDservice.updateStartup(this.id, {...startup, sector: this.startup?.sector});
     console.log(sectorsStartup);
-    
+
     this.router.navigate(['/admin']);
   }
 
-  getSectors() {
+  getSectors(sectors: string[]) {
+    console.log(sectors);
     this.CRUDservice.getSector().subscribe((response) => {
-      this.sectorCheckbox = response;
-     
+      this.sectors = response;
+      this.sectorCheckbox = response.map((sector) => {
+        console.log(sectors.indexOf(sector.sector) != -1);
+        return {
+          sector: sector,
+          isSelected: sectors.indexOf(sector.sector) != -1,
+        };
+      });
     });
   }
-  // addSector(){
 
-  // }
-  // onChange(event: any, i: number, sector: string) {
-  //   if (event.checked) {
-  //     this.addSector(sector);
-  //   } else {
-  //     let x = this.sectors.removeAt(i);
-  //   }
-  checkIfCheckedBefore(startup:any){
-           console.log(startup);
-           for(let i=0; i<this.sectorCheckbox.length; i++){
-            if(this.sectorCheckbox[i]==startup[i]){this.sectorCheckbox[i].isSelected=true}
-           }
-           
+  
+  checkSector(obj: any){
+    console.log(this.sectorCheckbox);
+    obj.isSelected = !obj.isSelected  ;
   }
 }
 

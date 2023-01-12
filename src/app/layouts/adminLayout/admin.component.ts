@@ -19,7 +19,9 @@ export class AdminComponent {
 
   addingSector() {
     let dialogRef = this.dialog.open(AddSectorComponent, {
-      width: '500px',
+      width: '38%',
+      height:'50%',
+      
     });
     dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/admin']);

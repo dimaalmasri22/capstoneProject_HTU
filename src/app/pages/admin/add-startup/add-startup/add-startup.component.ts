@@ -30,6 +30,7 @@ export class AddStartupComponent implements OnInit {
     yearOfEstablishment: ['', [Validators.required, Validators.min(0)]],
     website: ['', [Validators.required, secureUrlValidatorFactory('https')]],
     email: [''],
+    phone:[''],
     sector: this.fb.array([], Validators.required),
   });
   get urlWeb() {

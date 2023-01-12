@@ -1,7 +1,7 @@
 import {  Sectors } from "./sector";
 
 export interface startup {
-    id?:number
+    id?:string,
     city?:string,
     companyName?:string,
     email?:string,
@@ -9,7 +9,7 @@ export interface startup {
     logo?:string,
     numOfEmployees?:number,
     phone?:number,
-    sector?:Sectors,
+    sector?:string[],
     website?:string,
     yearOfEstablishment?:number,
 }

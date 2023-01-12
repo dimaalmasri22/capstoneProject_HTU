@@ -2,27 +2,28 @@
   <mat-sidenav-container class="navbarSidenavContainer">
     <!-- side nav -->
     <mat-sidenav #drawer class="sidenav" mode="side" >
+      <div class="sideNavContainer">
       <div>
-        <mat-icon>home</mat-icon>
+        
 
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/"><mat-icon>home</mat-icon><p>Home</p></a>
       </div>
 
       <div>
-        <mat-icon>dashboard</mat-icon>
-        <a class="nav-link" routerLink="/admin">Dashboard</a>
+       
+        <a class="nav-link" routerLink="/admin">  <mat-icon class="dashboard">dashboard</mat-icon><p>Dashboard</p></a>
       </div>
       <div>
-        <mat-icon>add</mat-icon>
-        <a class="nav-link" routerLink="/admin/startupForm">startup</a>
+        
+        <a class="nav-link" routerLink="/admin/startupForm"><mat-icon>add</mat-icon><p>startup</p></a>
       </div>
       <div>
-        <mat-icon>add</mat-icon>
-     <a  class="addSectorStyle" (click)="addingSector()">Sector</a>
+       
+     <a  class="addSectorStyle" (click)="addingSector()"> <mat-icon>add</mat-icon><p>Sector</p></a>
       </div>
        <div>
-        <mat-icon>notifications</mat-icon>
-        <a class="nav-link" routerLink="/admin/Requests">Requests</a>
+        <a class="nav-link" routerLink="/admin/Requests">   <mat-icon class="notifications">notifications</mat-icon><p>Requests</p></a>
+      </div>
       </div>
     </mat-sidenav>
 

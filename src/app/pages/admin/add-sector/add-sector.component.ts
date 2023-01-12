@@ -17,23 +17,27 @@ export class AddSectorComponent {
     private crudService: CRUDService,
     private dialogRef: MatDialogRef<AddSectorComponent>,
     public authService: AuthService,
-     private fb: FormBuilder,
- private router: Router,
+    private fb: FormBuilder,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {}
   form = this.fb.group({
     sector: [''],
-    isSelected:[true]
+    isSelected: [false],
   });
 
   submit() {
     //  add Sector
     this.crudService
-      .addSector({ ...this.form.value }  as Sectors)
+      .addSector({ ...this.form.value } as Sectors)
       .subscribe((_) => {
-        //delete student
-        // this.startupsService.deleteStartup(this.data.id).subscribe((_) => {
+      
         this.dialogRef.close(true);
       });
   }
+  closeTheDialogue() {
+    this.dialogRef.close(true);
+  }
 }
+
+

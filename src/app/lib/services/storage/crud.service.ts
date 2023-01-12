@@ -25,7 +25,7 @@ export class CRUDService {
     return from(addedStartup);
   }
   getStartup(): Observable<startup[]> {
-    return this.startupCollection.valueChanges({ idField: 'uid' });
+    return this.startupCollection.valueChanges({ idField: 'id' });
   }
   getStartupById(id: string) {
     return this.startupCollection.doc(id).valueChanges();
@@ -35,6 +35,7 @@ export class CRUDService {
     return from(this.startupCollection.doc(id).delete());
   }
   updateStartup(id: string, startup: startup) {
+    console.log(startup)
     return from(this.startupCollection.doc(id).update({ ...startup }));
     
      
@@ -47,7 +48,7 @@ export class CRUDService {
     return from(addSector);
   }
   getSector(): Observable<Sectors[]> {
-    return this.sectorCollection.valueChanges({ idField: 'uid' });
+    return this.sectorCollection.valueChanges({ idField: 'id' });
   }
   filterStartups(selectedSector: string): Observable<startup[]> {
     return this.firestore
@@ -69,6 +70,6 @@ export class CRUDService {
 return from(this.requestCollection.doc(id).delete());
   }
   getRequests(): Observable<startup[]> {
-    return this.requestCollection.valueChanges({ idField: 'uid' });
+    return this.requestCollection.valueChanges({ idField: 'id' });
   }
 }

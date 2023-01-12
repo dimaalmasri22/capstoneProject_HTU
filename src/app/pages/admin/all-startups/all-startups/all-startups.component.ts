@@ -44,7 +44,6 @@ export class AllStartupsComponent implements OnInit {
   }
   getStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
-      // this.startups = response;
 
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
@@ -62,15 +61,15 @@ export class AllStartupsComponent implements OnInit {
   deleteStartup(id: string) {
     let dialogRef = this.dialog.open(DeleteComponent, {
       width: '500px',
+      
       data: { id: id },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      //refresh table
-      //this.students = this.studentsService.getStudents();
+
       this.getStartups();
     });
   }
-  // get sectors in filter
+  // get sectors to filter
   getSectors() {
     this.CRUDService.getSector().subscribe((response) => {
     
@@ -82,5 +81,11 @@ export class AllStartupsComponent implements OnInit {
 
     this.CRUDService.filterStartups(sector).subscribe((response) =>{ this.dataSource = new MatTableDataSource(response);
     this.dataSource.paginator = this.paginator;})
+  }
+  reshowStartups(){
+ this.CRUDService.getStartup().subscribe((response) => {
+   this.dataSource = new MatTableDataSource(response);
+   this.dataSource.paginator = this.paginator;
+ });
   }
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { StartupInfoRoutingModule } from './startup-info-routing.module';
 import { StartupInfoComponent } from './startup-info/startup-info.component';
+import { MaterialModule } from 'src/app/lib/components/material/material.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { StartupInfoComponent } from './startup-info/startup-info.component';
   ],
   imports: [
     CommonModule,
-    StartupInfoRoutingModule
+    StartupInfoRoutingModule,
+    MaterialModule,
+    FormsModule
   ]
 })
 export class StartupInfoModule { }
