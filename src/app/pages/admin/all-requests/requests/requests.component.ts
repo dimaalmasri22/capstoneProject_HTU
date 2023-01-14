@@ -58,7 +58,6 @@ export class RequestsComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       //refresh table
-      //this.students = this.studentsService.getStudents();
       this.getStartups();
     });
   }
@@ -69,7 +68,6 @@ export class RequestsComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       //refresh table
-      //this.students = this.studentsService.getStudents();
       this.getStartups();
     });
   }

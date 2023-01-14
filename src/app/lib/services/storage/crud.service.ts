@@ -12,6 +12,7 @@ import { startup } from '../../interfaces/startup';
   providedIn: 'root',
 })
 export class CRUDService {
+  i!:number;
   startupCollection!: AngularFirestoreCollection<startup>;
   sectorCollection!: AngularFirestoreCollection<Sectors>;
   requestCollection!: AngularFirestoreCollection<startup>;
@@ -37,9 +38,6 @@ export class CRUDService {
   updateStartup(id: string, startup: startup) {
     console.log(startup)
     return from(this.startupCollection.doc(id).update({ ...startup }));
-    
-     
-    
  
   }
   // Sectors CRUD
@@ -72,4 +70,7 @@ return from(this.requestCollection.doc(id).delete());
   getRequests(): Observable<startup[]> {
     return this.requestCollection.valueChanges({ idField: 'id' });
   }
+  // get the length of the requests
+  getLength(){
+   return this.requestCollection.valueChanges({ idField: 'id' });}
 }

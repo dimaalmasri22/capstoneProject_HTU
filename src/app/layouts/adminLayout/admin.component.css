@@ -70,3 +70,11 @@ margin: 2rem 0;
     display: none;
 }
 }
+
+/* notificationnumber */
+.nav-link span span {
+   position: relative;
+   left: 5px;
+   bottom: 15px;
+   color: red;
+}

@@ -17,6 +17,7 @@ export class AddRequestsComponent {
   ) {}
 
   confirm() {
-    this.startupsService.approveRequest(this.data.id,this.data.data)
+    this.startupsService.approveRequest(this.data.id,this.data.data);
+    this.dialogRef.close(true);
   }
 }

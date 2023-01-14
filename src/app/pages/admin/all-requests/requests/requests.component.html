@@ -5,7 +5,7 @@
 
 
 
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8 tablePag">
 <table mat-table [dataSource]="dataSource" >
   <!-- Logo Column -->
   <ng-container matColumnDef="Logo">
@@ -57,7 +57,7 @@
   <ng-container matColumnDef="Delete">
     <th mat-header-cell *matHeaderCellDef>Delete</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button (click)="deleteStartup(element.uid)">
+      <button mat-icon-button (click)="deleteStartup(element.id)">
         <mat-icon>delete</mat-icon>
       </button>
     </td>
@@ -73,7 +73,7 @@
     </td>
   </tr>
 </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+  <mat-paginator class="pag" [pageSizeOptions]="[5, 10, 20]"
                  showFirstLastButtons
                  aria-label="Select page of periodic elements">
   </mat-paginator>

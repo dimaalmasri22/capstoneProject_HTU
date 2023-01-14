@@ -22,7 +22,7 @@
      <a  class="addSectorStyle" (click)="addingSector()"> <mat-icon>add</mat-icon><p>Sector</p></a>
       </div>
        <div>
-        <a class="nav-link" routerLink="/admin/Requests">   <mat-icon class="notifications">notifications</mat-icon><p>Requests</p></a>
+        <a class="nav-link" routerLink="/admin/Requests"> <span> <mat-icon class="notifications">notifications</mat-icon><span *ngIf="NoOfRequests!=0"> {{NoOfRequests}}</span></span><p>Requests </p></a>
       </div>
       </div>
     </mat-sidenav>
@@ -31,7 +31,7 @@
       <!-- Top navbar-->
       <mat-toolbar class="navbar">
         <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
+          <mat-icon>menu </mat-icon>
         </button>
         <!-- spacer  -->
         <span class="navbar-spacer"></span>

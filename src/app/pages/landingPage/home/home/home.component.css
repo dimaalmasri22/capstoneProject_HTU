@@ -136,14 +136,16 @@ padding: 10rem 0;
 	/* margin:5rem 0; */
 background-color:rgb(139, 139, 139);
 min-height: 25vh;
-padding: 7rem 0 0 0 ;
-margin-bottom: 4rem;
+padding: 4rem 0 0 0 ;
+position: relative;
+/* bottom: 200px; */
 }
 .share h1 {
     text-align: center;
     word-break: break-word;
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 900;
+	color: white;
 }
 
 share-buttons {
