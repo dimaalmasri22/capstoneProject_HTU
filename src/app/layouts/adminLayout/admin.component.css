@@ -65,3 +65,8 @@ margin: 2rem 0;
 .addSectorStyle:hover{
     cursor: pointer;
 }
+@media (max-width:319px){
+.navbar-brand {
+    display: none;
+}
+}

@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
   reshowStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
       this.startups = response;
+      console.log(response);
     });
   }
   navigateToInfo(startup:startup){

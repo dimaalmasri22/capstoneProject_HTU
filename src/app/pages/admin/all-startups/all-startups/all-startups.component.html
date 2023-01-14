@@ -1,19 +1,20 @@
-<mat-form-field class="filterSearch">
+<div class="responsiveFilters">
+<mat-form-field class="filterSearch" appearance="outline">
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
 </mat-form-field>
 
-<mat-form-field appearance="fill" class="filter">
+<mat-form-field  #form appearance="fill" class="filter" appearance="outline">
   <mat-label>Filter by sector</mat-label>
   <mat-select>
     <mat-option selected value="" (click)="reshowStartups()">Fiter By Sector</mat-option>
-    <mat-option *ngFor="let sector of sectors   , let i=index" [value]="sector.sector " (click)="filterStartups(sector.sector)">
+    <mat-option *ngFor="let sector of sectors , let i=index" [value]="sector.sector " (click)="filterStartups(sector.sector)">
       {{sector.sector}}
     </mat-option>
   </mat-select>
 </mat-form-field>
-
-<div class="mat-elevation-z8">
+</div>
+<div class="mat-elevation-z8 table" >
 <table mat-table [dataSource]="dataSource" >
   <!-- Logo Column -->
   <ng-container matColumnDef="Logo">

@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
+import { FilestorageService } from 'src/app/lib/services/storage/filestorage.service';
 
 @Component({
   selector: 'app-edit',
@@ -12,6 +13,8 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
+  hide?:boolean=false;
+  downloadUrl?: string;
   sectors: Sectors[] = [];
   sectorCheckbox: { sector: Sectors; isSelected: boolean }[] = [];
   startup?: startup;
@@ -20,10 +23,9 @@ export class EditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private CRUDservice: CRUDService,
-    private router: Router
+    private router: Router,
+    private storage: FilestorageService
   ) {
-   
-
     this.startup$ = this.route.paramMap.pipe(
       switchMap((value) => {
         this.id = value.get('id') + '';
@@ -40,14 +42,22 @@ export class EditComponent implements OnInit {
     });
   }
   editStartup(startup: any, sectorsStartup: any): void {
-
-    if(this.startup && this.startup.sector){
-    this.startup.sector = this.sectorCheckbox
-      .filter((val) => val.isSelected)
-      .map((e) => e.sector.sector);
-    }console.log(this.startup)
-    this.CRUDservice.updateStartup(this.id, {...startup, sector: this.startup?.sector});
-    console.log(sectorsStartup);
+    if (this.startup && this.startup.sector) {
+      this.startup.sector = this.sectorCheckbox
+        .filter((val) => val.isSelected)
+        .map((e) => e.sector.sector);
+    }
+   if(this.downloadUrl){ this.CRUDservice.updateStartup(this.id, {
+     ...startup,
+     sector: this.startup?.sector,
+     logo: this.downloadUrl,
+   });}
+   else{ this.CRUDservice.updateStartup(this.id, {
+     ...startup,
+     sector: this.startup?.sector
+   });}
+   
+   
 
     this.router.navigate(['/admin']);
   }
@@ -66,10 +76,21 @@ export class EditComponent implements OnInit {
     });
   }
 
-  
-  checkSector(obj: any){
+  checkSector(obj: any) {
     console.log(this.sectorCheckbox);
-    obj.isSelected = !obj.isSelected  ;
+    obj.isSelected = !obj.isSelected;
+  }
+
+  upload(event: Event) {
+    // console.log(event);
+    let file = (event.target as HTMLInputElement)?.files?.[0];
+    if (file) {
+      this.storage.uploadimage(file).subscribe((value) => {
+        this.downloadUrl = value;
+        this.hide=true;
+     
+      });
+    }
   }
 }
 

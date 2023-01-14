@@ -18,20 +18,7 @@
             <mat-error>startup Name is required</mat-error>
           </mat-form-field>
         </div>
-        <div class="column">
-          <mat-form-field appearance="outline">
-            <mat-label>Logo Image</mat-label>
-            <input matInput type="url" [(ngModel)]='startup.logo' name="logo" />
-            
-          </mat-form-field>
-        </div>
-        <div class="column">
-          <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
-            <input matInput type="text" name="city" [(ngModel)]='startup.city' />
-            <mat-error>city is required</mat-error>
-          </mat-form-field>
-        </div>
+       
       </div>
       <div class="row">
         <div class="column">
@@ -92,6 +79,19 @@
 
         </div>
       </div>
+         <div class="column">
+      
+          
+            <label>Logo Image</label>
+          
+            <input  type="file"  accept="image/*" (change)="upload($event)" required >
+            <img  *ngIf="startup.logo" title="upload" [src]='startup.logo'  width="100px"  [class.hide]="hide">
+            <img  *ngIf="downloadUrl" title="upload" [src]='downloadUrl'  width="100px"  >
+            <mat-error *ngIf="!downloadUrl" 
+              >Image Url is required</mat-error
+            >
+      
+        </div>
     </mat-card-content>
     <mat-card-actions class="btns">
    

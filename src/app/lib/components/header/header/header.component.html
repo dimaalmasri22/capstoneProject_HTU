@@ -1,26 +1,25 @@
 <div class="header">
+  <mat-toolbar class="toolbar" >
+    <div class="imageLogo">
+      <a routerLink="/"
+        ><img
+          src="../../assets/icons/LogoMakr-0QyaYX.png"
+          alt="icon"
+          width="130px"
+          height="25px"
+      /></a>
+    </div>
 
-    <mat-toolbar class="toolbar">
-      <div>
-        <a routerLink="/" class="imageLogo"
-          ><img
-            src="../../assets/icons/LogoMakr-0QyaYX.png"
-            alt="icon"
-            width="130px"
-            height="25px"
-        /></a>
-      </div>
-      <div class="list">
-        <a routerLink="/">Home</a>
-        <a routerLink="/about">About Us</a>
-        <a routerLink="/FAQ">FAQ</a>
-         <a routerLink="/addRequest">Add Startup</a>
-      </div>
+    <div class="list" [class.open]="toggle" >
+      <ul class="navigation" [class.navbars]="navbars" >
+        <li><a (click)="navigateHome()">Home</a></li>
+        <li><a (click)="navigateAbout()">About Us</a></li>
+        <li><a (click)="navigateFaq()">FAQ</a></li>
+        <li><a (click)="navigateAddStartup()">Add Startup</a></li>
+        <li><a (click)="navigateLogin()">login</a></li>
+      </ul>
+    </div>
 
-      <div class="login">
-        <a routerLink="/auth"><i class="fa-solid fa-right-to-bracket"></i></a>
-
-      </div>
-    </mat-toolbar>
-  </div>
-
+    <button mat-icon-button class="displayBtn" (click)="OpenMenu()"><mat-icon>menu</mat-icon></button>
+  </mat-toolbar>
+</div>

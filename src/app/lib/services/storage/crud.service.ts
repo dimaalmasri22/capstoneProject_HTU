@@ -55,7 +55,7 @@ export class CRUDService {
       .collection<startup>('startups', (ref) =>
         ref.where('sector', 'array-contains', selectedSector)
       )
-      .valueChanges();
+      .valueChanges({ idField: 'id' });
   }
   // requests
   deleteRequest(id: string) {

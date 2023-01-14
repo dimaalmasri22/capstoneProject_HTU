@@ -13,7 +13,7 @@ import { AuthRoutingModule } from './pages/auth/auth-routing.module';
 import {AngularFirestoreModule}from '@angular/fire/compat/firestore';
 import { LayoutsModule } from './layouts/layouts.module';
 import { AddSectorComponent } from './pages/admin/add-sector/add-sector.component';
-
+import {AngularFireStorageModule}from '@angular/fire/compat/storage'
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { AddSectorComponent } from './pages/admin/add-sector/add-sector.componen
     AngularFireAuthModule,
     AuthRoutingModule,
     LayoutsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule
 
    
   ],

@@ -1,9 +1,9 @@
 
 img {
-	max-width: 100%;
+
 	height: auto;
-	vertical-align: middle;
-	display: inline-block;
+	width:200px;
+	
 }
 
 /* Main CSS */
@@ -23,7 +23,7 @@ img {
     border: 1px solid black;
 }
 .grid-wrapper div:hover img {
-	transform: scale(1.3);
+	transform: scale(1.03);
 	cursor: pointer;
 }
    /* effect on cards */
@@ -40,7 +40,9 @@ img {
 	grid-auto-rows: 200px;
 	grid-auto-flow: dense;
      margin-top: 80px;
-     margin-bottom: 15rem;
+	 /* updated */
+     margin-bottom: 5rem;  
+	 /*  */
       width: 95%;
 	  min-height: 100vh;
 	  /* border: 1px solid red; */
@@ -59,6 +61,17 @@ img {
     	grid-column: span 2;
   }
 }
+@media (max-width:360px){
+.grid-wrapper mat-card {
+	display: block;
+    width: 100%;
+    height: 100%;
+	overflow: scroll;
+	
+	
+  
+}	
+}
 
 
 
@@ -66,36 +79,25 @@ img {
 /* intro */
 .intro .card {
   position: relative;
-  background:url(/assets/backgrounds/2998175d-56ec-4177-9b5d-9c9094911bf1.png) no-repeat ;
-  background-size: cover;
+  background:url(/assets/backgrounds/2998175d-56ec-4177-9b5d-9c9094911bf1.png) no-repeat;
+    background-size: cover;
  background-position-y:-5rem;
-  height: 70vh;
+  min-height: 55vh;
  
 margin-top: 4rem;
 box-shadow: none;
- animation: slide-in-top 1s ease-out both;
-
 }
-
-.card p {
- 
-position: absolute;
-top: 55%;
-right: 20%;
-text-align: center;
-}
-
-
 .card h1 {
   position: absolute;
-top: 30%;
-right: 20%;
+top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+word-wrap: break-word;
+font-size: 4rem;
+font-weight: 300;
+line-height: 65px;
 text-align: center;
-
-}
-.card h1 {
-  margin-top: 4rem;
-}
+width: 50%;}
 
 /* filter sector */
 .filter {
@@ -105,60 +107,7 @@ text-align: center;
 	transform: translateX(-50%);
 width: 50%;
 }
-/* three cards */
-.threecards {
-display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-	align-items: center;
-	column-gap: 6rem;
-margin: 0 0 5rem 0;
-min-height: 80vh;
 
-}
-.threeCard {
-	 width: 25%;
- height: 25%;
- box-shadow: 0px 1px 13px rgba(0,0,0,0.1);
- cursor: pointer;
-border-radius: 2rem;
-padding: 4rem 0;
-
-
-}
-.threeCard:hover {
-  transform: scale(1.05);
-  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.22);
-}
-.threeCard:active {
-	  transform: scale(0.95) rotateZ(1.7deg);
-}
-
-.textH  {
-position: relative;
-left: 50%;
- transform: translateX(-50%);
-width: 50%;
-font-size: 3.5rem;
-}
-.textC {
-	font-size: 5rem;
-
-		margin-top: 5rem;
-		border-radius: 2rem;
-        height: 60px;
-		width: 50%;
-		padding: 1rem;
-        margin-bottom: 1rem;
-			text-align: center;
-			position: relative;
-			left: 50%;
-			transform: translatex( -50%);
-			
-			
-
-
-}
 /* middle */
 .middle h1,.middle p {
 	font-family: 'Playfair Display', serif;text-align: center;
@@ -181,4 +130,34 @@ font-size: 3.5rem;
 padding: 10rem 0;
 	
 	border: 1px solid black;
+}
+.share {
+	/* background-color:grey; */
+	/* margin:5rem 0; */
+background-color:rgb(139, 139, 139);
+min-height: 25vh;
+padding: 7rem 0 0 0 ;
+margin-bottom: 4rem;
+}
+.share h1 {
+    text-align: center;
+    word-break: break-word;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+share-buttons {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+
+
+@media (max-width:660px){
+.card h1 {
+	width: 100%;
+	font-size: 1.5rem;
+	font-weight: 500;
+}
 }

@@ -38,3 +38,8 @@ mat-form-field {
 .sectors button {
     justify-self: center;
 }
+
+/* display of logo */
+ .hide {
+    display:none;
+ }

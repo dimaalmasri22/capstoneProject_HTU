@@ -38,4 +38,18 @@ mat-form-field {
 .sectors button {
     justify-self: center;
 }
+@media (max-width: 300px) {
+    .formField {
+        width: 100%;
+        padding: 0;
+    }
+}
+@media (max-width:250px){
+    mat-form-field {
+        width: 60%;
+        position: relative;
+        left: 50%;
+        transform:translateX(-50%)
+    }
+}
 

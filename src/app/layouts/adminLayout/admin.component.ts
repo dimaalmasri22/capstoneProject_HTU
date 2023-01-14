@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/lib/services/auth/auth.service';
@@ -9,14 +9,17 @@ import { AddSectorComponent } from 'src/app/pages/admin/add-sector/add-sector.co
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private auth: AuthService
   ) {}
   showFiller = false;
-
+ 
+ngOnInit():void {
+ 
+}
   addingSector() {
     let dialogRef = this.dialog.open(AddSectorComponent, {
       width: '38%',

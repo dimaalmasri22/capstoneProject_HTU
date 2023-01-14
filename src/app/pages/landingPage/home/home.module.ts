@@ -4,16 +4,19 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from 'src/app/lib/components/material/material.module';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+
 
 
 @NgModule({
-  declarations: [
-    HomeComponent
-  ],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    ShareButtonsModule,
+    ShareIconsModule,
+  ],
 })
-export class HomeModule { }
+export class HomeModule {}

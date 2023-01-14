@@ -1,28 +1,108 @@
+
 .toolbar {
-  position: fixed;
-  display: flex;
-  justify-content:space-between;
-  background-color:white;
-  font-family: "Playfair Display", serif;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height: 80px;
   z-index: 1;
-  max-height: 20vh;
-
-}
-.toolbar div {
+  padding:20px 40px;
   display: flex;
-  justify-content: space-evenly;
-  column-gap: 3rem;
+  justify-content: space-between;
+  align-items: center;
+font-weight: 300;
+background-color: white;
+ /* font-family: "Playfair Display", serif; */
 }
-
-
-.list a {
-  text-decoration: none;
-  color: black;
-  font-size: 0.8rem;
+.toolbar .imageLogo img {
+  width: 150px;
+  height: 35px;
+  
 }
-  .toolbar .login a {
-    
-  color: black;
-  font-size: 1.3rem;
+ .toolbar .list {
+  display: flex;
+ align-items: center;}
+ .toolbar ul {
+  position: relative;
+  display:flex;
+  gap: 30px;
  }
 
+ .toolbar ul li {
+    list-style: none;}
+    
+.toolbar ul li a {
+position: relative;
+text-decoration: none;
+color: black;
+text-transform: uppercase;
+font-size: 1rem;
+letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.toolbar ul li a::before {
+  content: ''
+  ;
+  position: absolute;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  border-radius: 2rem;
+  background-color: chocolate;
+  transform: scaleX(0);
+  transition: transform 0.7s ease-in-out;
+  transform-origin: right;
+
+}
+.toolbar ul li a:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+ 
+}
+.displayBtn {
+  position: relative;
+  display:none;
+}
+
+  /* responsive */
+  @media (max-width:800px){
+   .displayBtn {
+  position: relative;
+  display:block;
+}
+
+.toolbar .list{
+  display:none;
+}
+.toolbar .list.open{
+  display:block;
+  position: absolute;
+  top:80px;
+right: 0;
+  width: 70%;
+ min-height: 100vh;
+ 
+  z-index: 999;
+}
+
+.toolbar .list .navigation.navbars {
+  position: relative;
+ top:-20px;
+  width: 100%;
+ min-height: 100vh;
+  background-color:white;
+ row-gap:3rem;
+  display: flex;
+  flex-direction: column;
+ padding: 12rem 3rem 5rem 3rem;
+box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+
+
+
+
+}
+.toolbar .list .navigation.navbars li a{
+word-wrap: break-word;
+}
+  }
+ 

@@ -1,8 +1,11 @@
 
-
+.table {
+  overflow: scroll;
+}
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
+  
 }
 mat-icon {
     color: black;
@@ -16,10 +19,22 @@ mat-icon {
   border-color: currentColor;
   background: whitesmoke;
 }
-.filterSearch {
-  width: 50%;
+.responsiveFilters {
+   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 2rem;
 }
-.filter {
-  width: 30%;
-margin-left: 5rem;
+.filter,.filterSearch {
+padding: 1.5rem 0 0 0;
+}
+ 
+@media (max-width:210px){
+ .responsiveFilters{
+  display: flex;
+  flex-direction: column;
+ 
+ }
+
+ 
 }
