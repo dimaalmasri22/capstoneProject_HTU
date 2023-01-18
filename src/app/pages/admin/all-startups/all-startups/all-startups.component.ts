@@ -13,6 +13,7 @@ import { DeleteComponent } from '../delete/delete.component';
   styleUrls: ['./all-startups.component.css'],
 })
 export class AllStartupsComponent implements OnInit {
+  loading!:boolean;
   // startups: startup[] = [];
   sectors: Sectors[] = [
     {
@@ -38,15 +39,16 @@ export class AllStartupsComponent implements OnInit {
   constructor(private CRUDService: CRUDService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.loading=true;
     this.getSectors();
     this.getStartups();
    
   }
   getStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
-
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
+      this.loading=false;
     });
   }
 
@@ -88,4 +90,5 @@ export class AllStartupsComponent implements OnInit {
    this.dataSource.paginator = this.paginator;
  });
   }
+
 }

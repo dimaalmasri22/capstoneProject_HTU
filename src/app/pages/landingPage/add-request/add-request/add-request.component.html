@@ -1,4 +1,5 @@
-<form class="formField" [formGroup]="form">
+
+<form class="formField" [formGroup]="form" >
   <mat-card>
     <mat-card-header>
       <mat-card-title>startup Information</mat-card-title>
@@ -108,13 +109,15 @@
         </div>
       </div>
         <div class="row">
-        <div class="column">
+        <div class="column logo">
       
           
-            <label>Logo Image</label>
-          
+            <label class="labelLogo">Logo Image</label>
+          <div class="uploadSpinner">
             <input  type="file"  accept="image/*" (change)="upload($event)" required >
+            <mat-spinner [diameter]="20" *ngIf="loading" ></mat-spinner></div>
             <img  *ngIf="downloadUrl" title="upload" [src]='downloadUrl'  width="100px"  >
+            
             <mat-error *ngIf="!downloadUrl" 
               >Image Url is required</mat-error
             >

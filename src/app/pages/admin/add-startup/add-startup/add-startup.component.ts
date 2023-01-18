@@ -49,7 +49,7 @@ export class AddStartupComponent implements OnInit {
   addSector(sector: string) {
     const sectorsFormGroup = new FormControl(sector, Validators.required);
     this.sectors.push(sectorsFormGroup);
-    console.log(this.sectors);
+   
   }
   // deleteSector(index: number) {
   //   this.sectors.removeAt(index);

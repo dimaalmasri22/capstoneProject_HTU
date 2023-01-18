@@ -4,6 +4,7 @@ import { AdminComponent } from './layouts/adminLayout/admin.component';
 import { EndUserComponent } from './layouts/endUserLayout/end-user.component';
 import { AuthGuard } from './lib/guards/auth.guard';
 import { NotloggedinGuard } from './lib/guards/notloggedin.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EditComponent } from './pages/admin/all-startups/edit/edit.component';
 
 
@@ -81,6 +82,7 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard],
   },
+  {path:"**",component:PageNotFoundComponent},
 ];
 
 @NgModule({

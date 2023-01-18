@@ -38,3 +38,13 @@ mat-form-field {
 .sectors button {
     justify-self: center;
 }
+
+
+.logo  {
+display: flex;
+column-gap: 2rem;
+}
+.uploadSpinner {
+    display: flex;
+    
+}

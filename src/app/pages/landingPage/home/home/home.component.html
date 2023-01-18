@@ -1,12 +1,12 @@
 <div class="content">
-  <div class="intro">
-    <mat-card class="card">
-      <h1>Your Entryway To Startups In Jordan</h1>
+  <div class="intro" >
+    <mat-card class="card " [class.fadeIn1]="fade">
+      <h1 [class.fadeIn2]="fade">Your Entryway To Startups In Jordan</h1>
      
     </mat-card>
   </div>
+ 
   <div>
-    
     <mat-form-field appearance="outline" class="filter">
       <mat-label>Filter by sector</mat-label>
       <mat-select>
@@ -15,16 +15,33 @@
         >
         <mat-option
           *ngFor="let sector of sectors"
-          [value]="sector.sector"
+          [value]="sector.sector "
           (click)="filterStartups(sector.sector)"
+          
         >
-          {{ sector.sector }}
+          {{ sector.sector  }} 
         </mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field >
+    <!-- <mat-form-field appearance="outline">
+<mat-label>Filter by city</mat-label>
+      <mat-select>
+        <mat-option selected value="" (click)="reshowStartups()"
+          >Fiter By city</mat-option
+        >
+        <mat-option
+          *ngFor="let sector of sectors"
+          [value]="sector.sector "
+          (click)="filterStartups(sector.sector)"
+          
+        >
+          {{ sector.sector  }} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
     <div class="container">
       <div class="grid-wrapper">
-        <mat-card   *ngFor="let startup of startups" class="cards"  (click)="navigateToInfo(startup)"
+        <mat-card    *ngFor="let startup of startups" class="cards" 
           >
          <div >
           <a [routerLink]="['startupInfo',startup.id]">
@@ -44,7 +61,7 @@
     [include]="[ 'facebook', 'email','linkedin',  'whatsapp']"
     [showIcon]="true"
     [showText]="false"
-    url="https://rodrigo.kamada.com.br/"
+    url="https://project-htu-2d945.firebaseapp.com/"
     description="Angular Share Buttons"
     twitterAccount="rodrigokamada"
     class="pt-5">

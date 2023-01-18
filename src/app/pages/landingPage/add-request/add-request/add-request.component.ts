@@ -12,6 +12,7 @@ import { FilestorageService } from 'src/app/lib/services/storage/filestorage.ser
   styleUrls: ['./add-request.component.css'],
 })
 export class AddRequestComponent {
+  loading:boolean = false;
   downloadUrl?: string;
   sectorCheckbox: Sectors[] = [];
   constructor(
@@ -19,7 +20,9 @@ export class AddRequestComponent {
     private CRUDservice: CRUDService,
     private router: Router,
     private storage: FilestorageService
-  ) {}
+  ) {
+    
+  }
   ngOnInit(): void {
     this.getSectors();
   }
@@ -50,6 +53,7 @@ export class AddRequestComponent {
   }
 
   submit() {
+    
     this.CRUDservice.addStartupRequest({ ...this.form.value,logo:this.downloadUrl } as startup);
     alert('adding startup request has been submitted ');
     this.router.navigate(['/']);
@@ -77,7 +81,9 @@ export class AddRequestComponent {
     // console.log(event);
     let file = (event.target as HTMLInputElement)?.files?.[0];
     if (file) {
+      this.loading = true;
       this.storage.uploadimage(file).subscribe((value) => {
+        this.loading = false;
         this.downloadUrl = value;
         console.log(value);
       });

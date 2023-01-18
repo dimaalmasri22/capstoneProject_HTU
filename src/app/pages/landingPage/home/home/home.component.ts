@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
@@ -9,6 +9,7 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  fade:boolean = false;
   startups: startup[] = [];
   sectors: Sectors[] = [];
   constructor(private CRUDService: CRUDService) {}
@@ -39,7 +40,13 @@ export class HomeComponent implements OnInit {
       console.log(response);
     });
   }
-  navigateToInfo(startup:startup){
-console.log(startup);
+  @HostListener("document:scroll") scrollfunction(){
+if(document.body.scrollTop>0 || document.documentElement.scrollTop>0){
+this.fade=true;
+}
+else{
+this.fade=false;
+}
   }
+  
 }

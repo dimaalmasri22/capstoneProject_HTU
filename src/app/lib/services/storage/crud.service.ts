@@ -36,7 +36,7 @@ export class CRUDService {
     return from(this.startupCollection.doc(id).delete());
   }
   updateStartup(id: string, startup: startup) {
-    console.log(startup)
+    // console.log(startup)
     return from(this.startupCollection.doc(id).update({ ...startup }));
  
   }

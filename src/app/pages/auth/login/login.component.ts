@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
 import { AuthService } from 'src/app/lib/services/auth/auth.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class LoginComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) {
+    
+  }
 
   get email() {
     return this.form.get('email');

@@ -13,11 +13,13 @@ import { AuthRoutingModule } from './pages/auth/auth-routing.module';
 import {AngularFirestoreModule}from '@angular/fire/compat/firestore';
 import { LayoutsModule } from './layouts/layouts.module';
 import { AddSectorComponent } from './pages/admin/add-sector/add-sector.component';
-import {AngularFireStorageModule}from '@angular/fire/compat/storage'
+import {AngularFireStorageModule}from '@angular/fire/compat/storage';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { HeaderModule } from './lib/components/header/header.module';
 
 
 @NgModule({
-  declarations: [AppComponent, AddSectorComponent],
+  declarations: [AppComponent, AddSectorComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,8 +30,8 @@ import {AngularFireStorageModule}from '@angular/fire/compat/storage'
     AuthRoutingModule,
     LayoutsModule,
     AngularFirestoreModule,
-    AngularFireStorageModule
-
+    AngularFireStorageModule,
+ HeaderModule
    
   ],
   providers: [],

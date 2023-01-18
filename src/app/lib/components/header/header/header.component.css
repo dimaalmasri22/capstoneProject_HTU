@@ -81,11 +81,14 @@ letter-spacing: 0.1em;
 right: 0;
   width: 70%;
  min-height: 100vh;
- 
-  z-index: 999;
+overflow-y: auto;
+ max-height:100vh;
+
+
 }
 
 .toolbar .list .navigation.navbars {
+
   position: relative;
  top:-20px;
   width: 100%;
@@ -94,15 +97,16 @@ right: 0;
  row-gap:3rem;
   display: flex;
   flex-direction: column;
- padding: 12rem 3rem 5rem 3rem;
+ padding: 5rem 3rem 5rem 3rem;
 box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
-
-
+ 
 
 
 }
+
 .toolbar .list .navigation.navbars li a{
 word-wrap: break-word;
+
 }
   }
  

@@ -83,10 +83,18 @@ img {
     background-size: cover;
  background-position-y:-5rem;
   min-height: 55vh;
- 
+ animation: fade-in 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 margin-top: 4rem;
 box-shadow: none;
 }
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  } }
+ 
 .card h1 {
   position: absolute;
 top: 50%;
@@ -97,7 +105,11 @@ font-size: 4rem;
 font-weight: 300;
 line-height: 65px;
 text-align: center;
-width: 50%;}
+width: 50%;
+
+
+}
+
 
 /* filter sector */
 .filter {
@@ -132,13 +144,11 @@ padding: 10rem 0;
 	border: 1px solid black;
 }
 .share {
-	/* background-color:grey; */
-	/* margin:5rem 0; */
 background-color:rgb(139, 139, 139);
 min-height: 25vh;
 padding: 4rem 0 0 0 ;
 position: relative;
-/* bottom: 200px; */
+ overflow:auto;
 }
 .share h1 {
     text-align: center;
@@ -152,7 +162,7 @@ share-buttons {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    
+   
 }
 
 
@@ -163,3 +173,28 @@ share-buttons {
 	font-weight: 500;
 }
 }
+@media (max-height:500px){
+.card h1 {
+	width: 100%;
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+}
+/* .fadeIn1 {
+	 animation: fade-in 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both; */
+	 /* animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
+/* } */
+
+
+  /* @keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+            transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+} */
