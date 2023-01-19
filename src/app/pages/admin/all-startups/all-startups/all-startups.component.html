@@ -15,9 +15,8 @@
 </mat-form-field>
 </div>
 
- <mat-spinner  class="loading"  *ngIf="loading"></mat-spinner>
 
-<div class="mat-elevation-z8 table"  *ngIf="!loading" [class.hiding]="loading">
+<div class="mat-elevation-z8 table"  >
 <table mat-table [dataSource]="dataSource" >
   <!-- Logo Column -->
   <ng-container matColumnDef="Logo">

@@ -16,10 +16,11 @@ import { AddSectorComponent } from './pages/admin/add-sector/add-sector.componen
 import {AngularFireStorageModule}from '@angular/fire/compat/storage';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { HeaderModule } from './lib/components/header/header.module';
+import { SpinnerComponent } from './lib/components/spinner/spinner.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AddSectorComponent, PageNotFoundComponent],
+  declarations: [AppComponent, AddSectorComponent, PageNotFoundComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

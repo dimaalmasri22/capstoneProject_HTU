@@ -7,38 +7,78 @@
   </div>
  
   <div>
+    <div class="colorBackground"></div>
+     
+        <div class="filterContainer" >
+          <h1 class="filterHeader">Explore Startups in Jordan</h1>
+          <div class="filters">
     <mat-form-field appearance="outline" class="filter">
       <mat-label>Filter by sector</mat-label>
       <mat-select>
-        <mat-option selected value="" (click)="reshowStartups()"
-          >Fiter By Sector</mat-option
+        <mat-option selected value=""  (click)="reshowStartups()"
+          >All</mat-option
         >
         <mat-option
           *ngFor="let sector of sectors"
           [value]="sector.sector "
-          (click)="filterStartups(sector.sector)"
+          (click)="filterSector(sector.sector)"
           
         >
           {{ sector.sector  }} 
         </mat-option>
       </mat-select>
     </mat-form-field >
-    <!-- <mat-form-field appearance="outline">
-<mat-label>Filter by city</mat-label>
+    <mat-form-field appearance="outline">
+<mat-label>Filter by cities</mat-label>
       <mat-select>
-        <mat-option selected value="" (click)="reshowStartups()"
-          >Fiter By city</mat-option
+        <mat-option selected value="All" (click)="reshowStartups()"
+          >All</mat-option
         >
         <mat-option
-          *ngFor="let sector of sectors"
-          [value]="sector.sector "
-          (click)="filterStartups(sector.sector)"
-          
+          *ngFor="let city of cities"
+          [value]="city" 
+          (click)="filterCity(city)"
         >
-          {{ sector.sector  }} 
+          {{ city }} 
         </mat-option>
       </mat-select>
-    </mat-form-field> -->
+    </mat-form-field>
+     <mat-form-field appearance="outline">
+<mat-label>Filter by number of employees</mat-label>
+      <mat-select>
+        <mat-option selected value="All" (click)="reshowStartups()"
+         >All</mat-option
+        >
+        <mat-option
+          *ngFor="let employee of NoOfEmployees"
+          [value]="employee" 
+        (click)="filterEmployees(employee)"
+          
+        >
+          {{ employee }} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+     <mat-form-field appearance="outline">
+<mat-label>Filter by year</mat-label>
+      <mat-select>
+        <mat-option selected value="All" (click)="reshowStartups()"
+          >All</mat-option
+        >
+        <mat-option
+          *ngFor="let Year of YearOfEstablishment"
+          [value]="Year" 
+         (click)="filterYear(Year)"
+          
+        >
+          {{ Year }} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  <button mat-raised-button (click)="filtering()"><mat-icon>search</mat-icon></button>
+  </div>
+ </div>
+   
     <div class="container">
       <div class="grid-wrapper">
         <mat-card    *ngFor="let startup of startups" class="cards" 

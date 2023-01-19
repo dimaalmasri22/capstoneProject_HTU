@@ -38,9 +38,5 @@ padding: 1.5rem 1.5rem;
 
  
 }
-.loading {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
+
 

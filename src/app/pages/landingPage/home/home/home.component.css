@@ -39,7 +39,7 @@ img {
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	grid-auto-rows: 200px;
 	grid-auto-flow: dense;
-     margin-top: 80px;
+     /* margin-top: 80px; */
 	 /* updated */
      margin-bottom: 5rem;  
 	 /*  */
@@ -76,6 +76,7 @@ img {
 
 
 
+
 /* intro */
 .intro .card {
   position: relative;
@@ -102,7 +103,7 @@ top: 50%;
   transform: translate(-50%, -50%);
 word-wrap: break-word;
 font-size: 4rem;
-font-weight: 300;
+font-weight: 600;
 line-height: 65px;
 text-align: center;
 width: 50%;
@@ -111,13 +112,62 @@ width: 50%;
 }
 
 
-/* filter sector */
-.filter {
-	position: relative;
-    margin-top: 2rem;
-	left: 50%;
-	transform: translateX(-50%);
-width: 50%;
+/* filters */
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+
+}
+.filterContainer h1 {
+align-self: flex-start;
+font-weight: 300;
+font-size: 3rem;
+color: 
+
+black;
+padding-top: 1.5rem ;
+padding-left: 1.5rem;
+}
+.filters{
+  display: flex;
+padding: 1.5rem;
+justify-content:space-around ;
+align-items: baseline;
+column-gap: 1.2rem;
+width: 100%;
+margin-top: 2rem;
+}
+.filters mat-form-field {
+  width: 50%;
+}
+.filters button {
+  width: 30%;
+margin-right: 2rem;
+}
+@media (max-width:800px){
+  .filters mat-form-field {
+    width: 40%;
+  }
+  .filters {
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+}
+@media (max-width:600px){
+  .filters mat-form-field {
+    width: 80%;
+  }
+ 
+}
+@media (max-width:400px){
+  .filters mat-form-field {
+    width: 100%;
+  }
+ .filters {
+   padding: 0;
+margin-bottom: 0.8rem;
+  } 
 }
 
 /* middle */
@@ -180,21 +230,9 @@ share-buttons {
 	font-weight: 500;
 }
 }
-/* .fadeIn1 {
-	 animation: fade-in 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both; */
-	 /* animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
-/* } */
 
-
-  /* @keyframes slide-in-bottom {
-  0% {
-    -webkit-transform: translateY(1000px);
-            transform: translateY(1000px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    opacity: 1;
-  }
-} */
+.colorBackground {
+  background-color:var(--cultured-2);
+  width: 100%;
+  height: 50px;
+}

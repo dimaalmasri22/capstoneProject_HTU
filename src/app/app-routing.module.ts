@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './layouts/adminLayout/admin.component';
 import { EndUserComponent } from './layouts/endUserLayout/end-user.component';
+import { SpinnerComponent } from './lib/components/spinner/spinner.component';
 import { AuthGuard } from './lib/guards/auth.guard';
 import { NotloggedinGuard } from './lib/guards/notloggedin.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -82,6 +83,7 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard],
   },
+  {path:'spinner',component: SpinnerComponent},
   {path:"**",component:PageNotFoundComponent},
 ];
 

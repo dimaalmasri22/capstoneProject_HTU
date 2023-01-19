@@ -36,7 +36,7 @@ export class LoginComponent {
       .signIn(this.email?.value + '', this.password?.value + '')
       .then(() => {
         //navigate to admin/
-        this.router.navigate(['/admin/']);
+        this.router.navigate(['/spinner']);
       })
       .catch((error) => {
         console.log(error);

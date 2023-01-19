@@ -11,7 +11,7 @@ import { AddSectorComponent } from 'src/app/pages/admin/add-sector/add-sector.co
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  
+  isloading:boolean=true;
   NoOfRequests!: number;
   constructor(
     public dialog: MatDialog,
@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
   showFiller = false;
 
   ngOnInit(): void {
+   
     this.getNoOfRequests();
   }
   addingSector() {
@@ -40,4 +41,6 @@ export class AdminComponent implements OnInit {
     });
   }
   getNoOfRequests(){this.CRUDService.getLength().subscribe((response)=>this.NoOfRequests=response.length)}
+
+ 
 }
