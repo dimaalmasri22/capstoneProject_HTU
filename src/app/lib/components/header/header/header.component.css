@@ -12,11 +12,19 @@
   align-items: center;
 font-weight: 300;
 background-color: white;
- /* font-family: "Playfair Display", serif; */
+
 }
-.toolbar .imageLogo img {
-  width: 150px;
-  height: 35px;
+
+.toolbar .imageLogo a {
+  text-decoration:none ;
+  color: var(--davys-grey);
+}
+.toolbar .imageLogo a h1 , .toolbar .imageLogo a h1 span {
+    font-weight: 900;
+font-size: 2rem;
+}
+.toolbar .imageLogo a h1 span {
+  color: orange;
   
 }
  .toolbar .list {
@@ -34,11 +42,12 @@ background-color: white;
 .toolbar ul li a {
 position: relative;
 text-decoration: none;
-color: black;
+color:var(--davys-grey);
 text-transform: uppercase;
 font-size: 1rem;
 letter-spacing: 0.1em;
   cursor: pointer;
+  font-weight: 400;
 }
 .toolbar ul li a::before {
   content: ''

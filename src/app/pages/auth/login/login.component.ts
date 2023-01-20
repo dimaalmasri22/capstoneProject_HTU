@@ -39,7 +39,7 @@ export class LoginComponent {
         this.router.navigate(['/spinner']);
       })
       .catch((error) => {
-        console.log(error);
+        alert('Invalid Login Please Try Again')
       });
    
   }

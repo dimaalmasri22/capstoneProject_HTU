@@ -15,10 +15,29 @@
     padding: 2rem;
     width: auto;
    margin: 2rem 0;
+   padding: 5rem ;
+   width: 60%;
+   position: relative;
+   left: 50%;
+   transform: translateX(-50%);
 }
 mat-form-field {
     width: 100%;
-
+}
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+}
+mat-card-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--eerie-black);
+    font-weight: 500;
+    font-size: 2rem;
 }
 .btns {
     display: flex;
@@ -43,8 +62,20 @@ mat-form-field {
 .logo  {
 display: flex;
 column-gap: 2rem;
+flex-wrap: wrap;
+row-gap: 1rem;
+
+}
+.logo label {
+    font-size: 1.2rem;
+
 }
 .uploadSpinner {
     display: flex;
     
+}
+@media (max-width: 700px) {
+    .formField{
+        width: 100%;
+    }
 }

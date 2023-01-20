@@ -1,56 +1,24 @@
 .footerContent {
       display:flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
   background-color: rgb(33, 33, 33);
-font-family: "Playfair Display", serif;
-height: 10vh;
-
+min-height: 10vh;
+flex-wrap: wrap;
+width: 100%;
 }
 .footerContent p {
   color: white;
-  font-weight: 100;
-  font-size: 0.7rem;
-
-}
-.footerContent ul {
-    display:flex;
-  
-    list-style: none;
-    gap: 2rem;
-    flex-wrap: wrap;
+  font-weight: 300;
+  font-size: 1rem;
 
 }
 
-.footerContent ul li a {
-    text-decoration: none;
-    color: white;
-}
-.footerContent ul .fa-facebook-f:hover{
-  color: rgb( 0, 119, 181);  
-}
-.footerContent ul .fa-linkedin-in:hover {
-  color: rgb(59, 89, 152);  
-}
-.footerContent ul .fa-instagram:hover {
-  color:black;  
-}
-.footerContent ul .fa-twitter:hover {
-  color: rgb(29, 161, 242);  
-  
 
-
-}
 @media (max-width:500px){
-.footerContent {
-  display: flex;
-  flex-direction: column;
-  min-height: 25vh;
-  justify-content: center;
-}
+
 
 .footerContent p {
-  display: flex;
-  
-  flex-wrap: wrap;
+  word-wrap: break-word;
 }
 }

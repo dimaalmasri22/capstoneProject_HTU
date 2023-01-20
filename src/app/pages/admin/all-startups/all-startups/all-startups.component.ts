@@ -13,11 +13,14 @@ import { DeleteComponent } from '../delete/delete.component';
   styleUrls: ['./all-startups.component.css'],
 })
 export class AllStartupsComponent implements OnInit {
+  NoOfRequests!: number;
+  NoOfSectors!: number;
+  NoOfStartups!: number;
   sectors: Sectors[] = [
     {
-      sector:'',
-      isSelected:false,
-    }
+      sector: '',
+      isSelected: false,
+    },
   ];
 
   dataSource!: MatTableDataSource<any>;
@@ -39,13 +42,14 @@ export class AllStartupsComponent implements OnInit {
   ngOnInit(): void {
     this.getSectors();
     this.getStartups();
-   
+    this.getNoOfRequests();
+    this.getNoOfsectors();
+    this.getNoOfstartups();
   }
   getStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
- 
     });
   }
 
@@ -60,32 +64,45 @@ export class AllStartupsComponent implements OnInit {
   deleteStartup(id: string) {
     let dialogRef = this.dialog.open(DeleteComponent, {
       width: '500px',
-      
+
       data: { id: id },
     });
     dialogRef.afterClosed().subscribe((result) => {
-
       this.getStartups();
     });
   }
   // get sectors to filter
   getSectors() {
     this.CRUDService.getSector().subscribe((response) => {
-    
-       this.sectors = response;
-     
+      this.sectors = response;
     });
   }
-  filterStartups(sector:string){
-
-    this.CRUDService.filterStartups(sector).subscribe((response) =>{ this.dataSource = new MatTableDataSource(response);
-    this.dataSource.paginator = this.paginator;})
+  filterStartups(sector: string) {
+    this.CRUDService.filterStartups(sector).subscribe((response) => {
+      this.dataSource = new MatTableDataSource(response);
+      this.dataSource.paginator = this.paginator;
+    });
   }
-  reshowStartups(){
- this.CRUDService.getStartup().subscribe((response) => {
-   this.dataSource = new MatTableDataSource(response);
-   this.dataSource.paginator = this.paginator;
- });
+  reshowStartups() {
+    this.CRUDService.getStartup().subscribe((response) => {
+      this.dataSource = new MatTableDataSource(response);
+      this.dataSource.paginator = this.paginator;
+    });
   }
-
+  // numbers  on cards
+  getNoOfsectors() {
+    this.CRUDService.getLengthSector().subscribe(
+      (response) => (this.NoOfSectors = response.length)
+    );
+  }
+  getNoOfRequests() {
+    this.CRUDService.getLength().subscribe(
+      (response) => (this.NoOfRequests = response.length)
+    );
+  }
+  getNoOfstartups() {
+    this.CRUDService.getLengthStartup().subscribe(
+      (response) => (this.NoOfStartups = response.length)
+    );
+  }
 }

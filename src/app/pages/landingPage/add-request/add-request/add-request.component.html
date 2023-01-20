@@ -2,12 +2,12 @@
 <form class="formField" [formGroup]="form" >
   <mat-card>
     <mat-card-header>
-      <mat-card-title>startup Information</mat-card-title>
+      <mat-card-title>Startup Information</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="row">
-        <div class="column">
+      
           <mat-form-field appearance="outline">
+            
             <mat-label>Startup Name</mat-label>
             <input
               matInput
@@ -17,25 +17,21 @@
             />
             <mat-error>startup Name is required</mat-error>
           </mat-form-field>
-        </div>
+        
       
-        <div class="column">
+        
           <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
             <input matInput type="text" formControlName="city" />
             <mat-error>city is required</mat-error>
           </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
+      
           <mat-form-field appearance="outline">
             <mat-label>Founder Name</mat-label>
             <input matInput type="text" formControlName="founder" />
             <mat-error>Founder Name is required</mat-error>
           </mat-form-field>
-        </div>
-        <div class="column">
+        
           <mat-form-field appearance="outline">
             <mat-label>Number Of employees</mat-label>
             <input
@@ -45,8 +41,7 @@
               formControlName="numOfEmployees"
             />
           </mat-form-field>
-        </div>
-        <div class="column">
+       
           <mat-form-field appearance="outline">
             <mat-label>Year Of Establishment</mat-label>
             <input
@@ -57,8 +52,7 @@
             />
             <mat-error>Year Of Establishment is required</mat-error>
           </mat-form-field>
-        </div>
-          <div class="column">
+        
           <mat-form-field appearance="outline">
             <mat-label>Phone Number</mat-label>
             <input
@@ -70,10 +64,7 @@
             />
            
           </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
+       
           <mat-form-field appearance="outline">
             <mat-label>Website Url</mat-label>
             <input matInput type="url" formControlName="website" />
@@ -84,14 +75,26 @@
               >Website must start with https</mat-error
             >
           </mat-form-field>
-        </div>
-        <div class="column">
+       
           <mat-form-field appearance="outline">
             <mat-label>Email Address</mat-label>
             <input matInput type="email" formControlName="email" />
           </mat-form-field>
-        </div>
-      </div>
+          <div class="row">
+        <div class="column logo">
+      
+          
+            <label class="labelLogo">Logo Image</label>
+          <div class="uploadSpinner">
+            <input  type="file"  accept="image/*" (change)="upload($event)" required >
+            <mat-spinner [diameter]="20" *ngIf="loading" ></mat-spinner></div>
+            <img  *ngIf="downloadUrl" title="upload" [src]='downloadUrl'  width="100px"  >
+            
+            <mat-error *ngIf="!downloadUrl" 
+              >Image Url is required</mat-error
+            >
+      
+        </div></div>
       <div class="row">
         <div class="column">
           <ng-container>
@@ -108,21 +111,7 @@
           </ng-container>
         </div>
       </div>
-        <div class="row">
-        <div class="column logo">
-      
-          
-            <label class="labelLogo">Logo Image</label>
-          <div class="uploadSpinner">
-            <input  type="file"  accept="image/*" (change)="upload($event)" required >
-            <mat-spinner [diameter]="20" *ngIf="loading" ></mat-spinner></div>
-            <img  *ngIf="downloadUrl" title="upload" [src]='downloadUrl'  width="100px"  >
-            
-            <mat-error *ngIf="!downloadUrl" 
-              >Image Url is required</mat-error
-            >
-      
-        </div></div>
+    
     </mat-card-content>
     <mat-card-actions class="btns">
    

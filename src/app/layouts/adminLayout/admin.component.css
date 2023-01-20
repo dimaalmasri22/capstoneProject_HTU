@@ -22,7 +22,7 @@ mat-toolbar {
 /* sidenav */
 .sidenav {
     width: 250px;
-    /* min-height: 100vh; */
+   
     position:fixed;
     top: 0;
     left: 0;
@@ -77,4 +77,18 @@ margin: 2rem 0;
    left: 5px;
    bottom: 15px;
    color: red;
+}
+
+/* update */
+ .navbar-container .navbar .navbar-brand {
+  text-decoration:none ;
+
+}
+.navbar-container .navbar .navbar-brand  h1 , .navbar-container .navbar .navbar-brand h1 span {
+    font-weight: 600;
+font-size: 2rem;
+}
+ .navbar-container .navbar .navbar-brand  h1 span {
+  color: var(--davys-grey);
+  
 }

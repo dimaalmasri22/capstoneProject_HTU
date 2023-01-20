@@ -39,4 +39,47 @@ padding: 1.5rem 1.5rem;
  
 }
 
+/* cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3,0.2fr);
+  justify-content: space-around;
+ 
+  padding: 2rem;
+  min-height: 15vh;
+  position: relative;
+  color: white;
+  
+}
+.cards .C1{
+  /* background-color:  #62717b; */
+  background-color: #94a4a4;
+}
+
+.cards .C2{
+  /* background-color: #FCA311; */
+  background-color: #55646b;
+}
+
+.cards .C3 {
+  background-color: #d6d8d8;
+}
+
+.cards h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 3rem;
+  font-weight: 500;
+}
+.cards p {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  font-weight: 200;
+}
 

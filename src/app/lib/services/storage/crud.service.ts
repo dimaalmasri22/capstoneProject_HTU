@@ -66,6 +66,8 @@ export class CRUDService {
   getLength() {
     return this.requestCollection.valueChanges({ idField: 'id' });
   }
+  getLengthSector() {return this.startupCollection.valueChanges({ idField: 'id' });}
+  getLengthStartup() {return this.sectorCollection.valueChanges({ idField: 'id' });}
 
   // filtering
   filterStartups(selectedSector: string): Observable<startup[]> {
@@ -80,19 +82,22 @@ export class CRUDService {
       .collection<startup>('startups', (ref) =>
         ref.where('city', '==', selectedCity)
       )
-      .valueChanges({ idField: 'id' });}
+      .valueChanges({ idField: 'id' });
+  }
   filterStartupsEmployee(selectedEmplyee: number): Observable<startup[]> {
     return this.firestore
       .collection<startup>('startups', (ref) =>
         ref.where('numOfEmployees', '==', selectedEmplyee)
       )
-      .valueChanges({ idField: 'id' });}
+      .valueChanges({ idField: 'id' });
+  }
   filterStartupsYear(selectedYear: number): Observable<startup[]> {
     return this.firestore
       .collection<startup>('startups', (ref) =>
         ref.where('yearOfEstablishment', '==', selectedYear)
       )
-      .valueChanges({ idField: 'id' });}
+      .valueChanges({ idField: 'id' });
+  }
   filteringHome(
     sectorSelected: string,
     citySelected: string,
@@ -112,7 +117,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 2
-    if (sectorSelected && citySelected && yearSelected) {
+    else if (sectorSelected && citySelected && yearSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -123,7 +128,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 3
-    if (sectorSelected && citySelected && employeesSelected) {
+    else if (sectorSelected && citySelected && employeesSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -134,7 +139,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 4
-    if (sectorSelected && yearSelected && employeesSelected) {
+    else if (sectorSelected && yearSelected && employeesSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -143,9 +148,18 @@ export class CRUDService {
             .where('numOfEmployees', '==', employeesSelected)
         )
         .valueChanges({ idField: 'id' });
+    } else if (citySelected && yearSelected && employeesSelected) {
+      return this.firestore
+        .collection<startup>('startups', (ref) =>
+          ref
+            .where('city', '==', citySelected)
+            .where('yearOfEstablishment', '==', yearSelected)
+            .where('numOfEmployees', '==', employeesSelected)
+        )
+        .valueChanges({ idField: 'id' });
     }
     // 5
-    if (sectorSelected && citySelected) {
+    else if (sectorSelected && citySelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -155,7 +169,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 6
-    if (sectorSelected && yearSelected) {
+    else if (sectorSelected && yearSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -165,7 +179,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 7
-    if (sectorSelected && employeesSelected) {
+    else if (sectorSelected && employeesSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -175,7 +189,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 8
-    if (citySelected && yearSelected) {
+    else if (citySelected && yearSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -185,7 +199,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 9
-    if (citySelected && employeesSelected) {
+    else if (citySelected && employeesSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -195,7 +209,7 @@ export class CRUDService {
         .valueChanges({ idField: 'id' });
     }
     // 10
-    if (yearSelected && employeesSelected) {
+    else if (yearSelected && employeesSelected) {
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref

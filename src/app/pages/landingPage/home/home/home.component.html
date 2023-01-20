@@ -10,13 +10,13 @@
     <div class="colorBackground"></div>
      
         <div class="filterContainer" >
-          <h1 class="filterHeader">Explore Startups in Jordan</h1>
+          
           <div class="filters">
     <mat-form-field appearance="outline" class="filter">
       <mat-label>Filter by sector</mat-label>
       <mat-select>
-        <mat-option selected value=""  (click)="reshowStartups()"
-          >All</mat-option
+       <mat-option selected value=undefined (click)="reshowStartups()"
+          >all</mat-option
         >
         <mat-option
           *ngFor="let sector of sectors"
@@ -31,8 +31,9 @@
     <mat-form-field appearance="outline">
 <mat-label>Filter by cities</mat-label>
       <mat-select>
-        <mat-option selected value="All" (click)="reshowStartups()"
-          >All</mat-option
+
+         <mat-option selected value=undefined (click)="reshowStartups()"
+          >all</mat-option
         >
         <mat-option
           *ngFor="let city of cities"
@@ -46,8 +47,8 @@
      <mat-form-field appearance="outline">
 <mat-label>Filter by number of employees</mat-label>
       <mat-select>
-        <mat-option selected value="All" (click)="reshowStartups()"
-         >All</mat-option
+      <mat-option selected value=undefined (click)="reshowStartups()"
+          >all</mat-option
         >
         <mat-option
           *ngFor="let employee of NoOfEmployees"
@@ -62,9 +63,8 @@
      <mat-form-field appearance="outline">
 <mat-label>Filter by year</mat-label>
       <mat-select>
-        <mat-option selected value="All" (click)="reshowStartups()"
-          >All</mat-option
-        >
+        <mat-option selected value=null (click)="reshowStartups()"
+          >all</mat-option>
         <mat-option
           *ngFor="let Year of YearOfEstablishment"
           [value]="Year" 
@@ -83,9 +83,12 @@
       <div class="grid-wrapper">
         <mat-card    *ngFor="let startup of startups" class="cards" 
           >
-         <div >
+         <div class="containers">
           <a [routerLink]="['startupInfo',startup.id]">
             <img mat-card-image src="{{ startup.logo }}" />
+            
+              <div class="btn"><button mat-raised-button>More</button></div>
+          
           </a>
           </div>
 
@@ -96,7 +99,7 @@
   </div>
   <div class="share"
   >  
-  <h1> Share This Website On Social Media</h1>
+ 
   <share-buttons theme="circles-dark"  
     [include]="[ 'facebook', 'email','linkedin',  'whatsapp']"
     [showIcon]="true"
@@ -104,6 +107,10 @@
     url="https://project-htu-2d945.firebaseapp.com/"
     description="Angular Share Buttons"
     twitterAccount="rodrigokamada"
-    class="pt-5">
-  </share-buttons></div>
+    class="pt-5"
+    >
+  </share-buttons>
+<h1>share</h1>
+<mat-icon>add</mat-icon>
+</div>
 </div>
