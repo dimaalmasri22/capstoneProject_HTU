@@ -48,6 +48,7 @@ img {
   .grid-wrapper > div {
     grid-column: span 2;
   }
+ 
 }
 @media (max-width: 360px) {
   .grid-wrapper mat-card {
@@ -58,6 +59,10 @@ img {
   }
 }
 
+.contentHome {
+  padding-right: 5rem;
+  padding-left: 5rem;
+}
 /* intro */
 .intro .card {
   position: relative;
@@ -97,15 +102,10 @@ img {
 .filterContainer {
   display: flex;
   flex-direction: column;
+  padding-right: 2rem ;
+  padding-left: 2rem;
 }
-.filterContainer h1 {
-  align-self: flex-start;
-  font-weight: 300;
-  font-size: 3rem;
-  color: black;
-  padding-top: 1.5rem;
-  padding-left: 1.5rem;
-}
+
 .filters {
   display: flex;
   padding: 1.5rem;
@@ -119,7 +119,7 @@ img {
   width: 50%;
 }
 .filters button {
-  width: 30%;
+  width: 10%;
   margin-right: 2rem;
 }
 @media (max-width: 800px) {
@@ -173,11 +173,15 @@ img {
   color: black;
   font-size: 2rem;
 }
-
+.hideShare {
+  display: none;
+}
 /* sharing */
 .share {
+  display: block;
   position: absolute;
-  background-color: var(--cadet-blue-crayola);
+  background-color: var(--davys-grey);
+  right: 0;
   height: 300px;
   width: 70px;
   top: 50%;
@@ -189,6 +193,8 @@ img {
   align-items: center;
   border-radius: 0.5rem;
   opacity: 70%;
+
+/* transition: all 2s 0s ease-in; */
 }
 
 .share h1 {
@@ -199,25 +205,15 @@ img {
 .share mat-icon {
   color: white;
 }
-  /* .overlay {
-position: relative;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-display: none;
-transition: opacity 0.4 ease-in-out;
-background-color: black;
-cursor: pointer;
- } 
- .content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
+@media (max-height:400px){
+  .share {
+   height: 70%;
+   padding-top: 0;
+   transform: translateY(-30%);
+overflow: scroll;
+  }
   
- } */
+}
  .btn {
   position: absolute;
  top: 50%;
@@ -247,3 +243,18 @@ opacity: 1;
   opacity: 0.8;
  }
 
+/* pdf */
+.pdf a {
+  color:white;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  cursor: pointer;
+}
+@media (max-width:700px) {
+  .contentHome {
+    padding-left: 0;
+    margin: 0;
+  }
+}

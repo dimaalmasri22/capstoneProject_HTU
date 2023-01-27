@@ -1,8 +1,8 @@
 <div class="cards">
   <mat-card class="C1"><h1>{{NoOfSectors}}</h1>
-  <p>Sectors</p>
+  <p> Startups</p>
   </mat-card>
-   <mat-card class="C2"><h1>{{NoOfStartups}}</h1><p>Startups</p></mat-card>
+   <mat-card class="C2"><h1>{{NoOfStartups}}</h1><p>Sectors</p></mat-card>
     <mat-card class="C3"><h1>{{NoOfRequests}}</h1><p>Requests</p></mat-card>
 </div>
 
@@ -30,7 +30,7 @@
   <ng-container matColumnDef="Logo">
     <th mat-header-cell *matHeaderCellDef>Logo</th>
     <td mat-cell *matCellDef="let element">
-      <img src="{{ element.logo }}" width="70px" height="px" />
+      <img src="{{ element.logo }}" width="70px"  />
     </td>
   </ng-container>
 

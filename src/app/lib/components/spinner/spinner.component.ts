@@ -8,14 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./spinner.component.css']
 })
 export class SpinnerComponent {
-  constructor(private router:Router){}
+  constructor(){}
 
 
-ngOnInit() :void{
-
-  setTimeout(() => this.router.navigate(['/admin']), 1000);
-
-}
 
 
 }

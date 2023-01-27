@@ -64,11 +64,9 @@
             <mat-label>Website Url</mat-label>
             <input matInput type="url" formControlName="website" />
             <mat-error *ngIf="urlWeb?.hasError('required')"
-              >Url is required</mat-error
-            >
+              >Url is required</mat-error>
             <mat-error *ngIf="urlWeb?.hasError('insecureUrl')"
-              >Website must start with https</mat-error
-            >
+              >Website must start with https</mat-error>
           </mat-form-field>
         </div>
         <div class="column">

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { startup } from 'src/app/lib/interfaces/startup';
+import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 import { AddRequestsComponent } from '../add-requests/add-requests.component';
 import { DeleteRequestComponent } from '../delete-request/delete-request.component';
@@ -28,15 +29,19 @@ export class RequestsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private CRUDservice: CRUDService, public dialog: MatDialog) {}
+  constructor(
+    private CRUDservice: CRUDService,
+    public dialog: MatDialog,
+    private loader: LoadingService
+  ) {}
 
   ngOnInit(): void {
     this.getStartups();
   }
   getStartups() {
-    this.CRUDservice.getRequests().subscribe((response) => {
+     this.CRUDservice.getRequests().subscribe((response) => {
       // this.startups = response;
-
+      this.loader.hide();
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
     });
@@ -50,11 +55,11 @@ export class RequestsComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  addStartupRequest(id: string,data:startup[]) {
+  addStartupRequest(id: string, data: startup[]) {
     let dialogRef = this.dialog.open(AddRequestsComponent, {
       width: '500px',
       height: '250px',
-      data: { id: id,data: data },
+      data: { id: id, data: data },
     });
     dialogRef.afterClosed().subscribe((result) => {
       //refresh table

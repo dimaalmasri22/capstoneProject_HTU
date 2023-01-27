@@ -6,6 +6,7 @@ import {
 import { from, Observable } from 'rxjs';
 import { Sectors } from '../../interfaces/sector';
 import { startup } from '../../interfaces/startup';
+import { LoadingService } from '../loading/loading.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class CRUDService {
   startupCollection!: AngularFirestoreCollection<startup>;
   sectorCollection!: AngularFirestoreCollection<Sectors>;
   requestCollection!: AngularFirestoreCollection<startup>;
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore , private loader:LoadingService) {
     this.startupCollection = this.firestore.collection('startups');
     this.sectorCollection = this.firestore.collection('Sectors');
     this.requestCollection = this.firestore.collection('Requests');
@@ -26,7 +27,8 @@ export class CRUDService {
     return from(addedStartup);
   }
   getStartup(): Observable<startup[]> {
-    return this.startupCollection.valueChanges({ idField: 'id' });
+    this.loader.show();
+    return this.startupCollection.valueChanges({ idField: 'id' })
   }
   getStartupById(id: string) {
     return this.startupCollection.doc(id).valueChanges();
@@ -99,13 +101,14 @@ export class CRUDService {
       .valueChanges({ idField: 'id' });
   }
   filteringHome(
-    sectorSelected: string,
-    citySelected: string,
-    yearSelected: number,
-    employeesSelected: number
+    sectorSelected: string |undefined,
+    citySelected: string | undefined,
+    yearSelected: number | undefined,
+    employeesSelected: number | undefined
   ): Observable<startup[]> {
     // 1
     if (sectorSelected && citySelected && yearSelected && employeesSelected) {
+      console.log('1');
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -118,6 +121,8 @@ export class CRUDService {
     }
     // 2
     else if (sectorSelected && citySelected && yearSelected) {
+            console.log('2');
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -129,6 +134,8 @@ export class CRUDService {
     }
     // 3
     else if (sectorSelected && citySelected && employeesSelected) {
+            console.log('3',sectorSelected);
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -140,46 +147,58 @@ export class CRUDService {
     }
     // 4
     else if (sectorSelected && yearSelected && employeesSelected) {
+            console.log('4');
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
             .where('sector', 'array-contains', sectorSelected)
-            .where('yearOfEstablishment', '==', yearSelected)
-            .where('numOfEmployees', '==', employeesSelected)
-        )
-        .valueChanges({ idField: 'id' });
-    } else if (citySelected && yearSelected && employeesSelected) {
-      return this.firestore
-        .collection<startup>('startups', (ref) =>
-          ref
-            .where('city', '==', citySelected)
             .where('yearOfEstablishment', '==', yearSelected)
             .where('numOfEmployees', '==', employeesSelected)
         )
         .valueChanges({ idField: 'id' });
     }
-    // 5
-    else if (sectorSelected && citySelected) {
+    // 5 
+    else if (citySelected && yearSelected && employeesSelected) {
+            console.log('5');
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
-            .where('sector', 'array-contains', sectorSelected)
             .where('city', '==', citySelected)
+            .where('yearOfEstablishment', '==', yearSelected)
+            .where('numOfEmployees', '==', employeesSelected)
         )
         .valueChanges({ idField: 'id' });
     }
     // 6
-    else if (sectorSelected && yearSelected) {
+    else if (sectorSelected && citySelected) {
+            console.log('6');
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
             .where('sector', 'array-contains', sectorSelected)
-            .where('yearOfEstablishment', '==', yearSelected)
+            .where('city', '==', citySelected)
         )
         .valueChanges({ idField: 'id' });
     }
     // 7
+    else if (sectorSelected && yearSelected) {
+            console.log('7');
+
+      return this.firestore
+        .collection<startup>('startups', (ref) =>
+          ref
+            .where('sector', 'array-contains', sectorSelected)
+            .where('yearOfEstablishment', '==', yearSelected)
+        )
+        .valueChanges({ idField: 'id' });
+    }
+    // 8
     else if (sectorSelected && employeesSelected) {
+            console.log('8');
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -188,39 +207,99 @@ export class CRUDService {
         )
         .valueChanges({ idField: 'id' });
     }
-    // 8
+    // 9
     else if (citySelected && yearSelected) {
+            console.log('9');
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
             .where('city', '==', citySelected)
             .where('yearOfEstablishment', '==', yearSelected)
-        )
-        .valueChanges({ idField: 'id' });
-    }
-    // 9
-    else if (citySelected && employeesSelected) {
-      return this.firestore
-        .collection<startup>('startups', (ref) =>
-          ref
-            .where('city', '==', citySelected)
-            .where('numOfEmployees', '==', employeesSelected)
         )
         .valueChanges({ idField: 'id' });
     }
     // 10
-    else if (yearSelected && employeesSelected) {
+    else if (citySelected && employeesSelected) {
+            console.log('10');
+
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
-            .where('yearOfEstablishment', '==', yearSelected)
+            .where('city', '==', citySelected)
             .where('numOfEmployees', '==', employeesSelected)
         )
         .valueChanges({ idField: 'id' });
     }
     // 11
-    else {
-      return this.startupCollection.valueChanges({ idField: 'id' });
+    else if (yearSelected && employeesSelected) {
+            console.log('11');
+
+      return this.firestore
+        .collection<startup>('startups', (ref) =>
+          ref
+            .where('yearOfEstablishment', '==', yearSelected)
+            .where('numOfEmployees', '==', employeesSelected)
+        )
+        .valueChanges({ idField: 'id' });
     }
+    // 12
+     else if (sectorSelected ) {
+            console.log('12');
+
+       return this.firestore
+         .collection<startup>('startups', (ref) =>
+           ref
+             .where('sector', 'array-contains', sectorSelected)
+          
+         )
+         .valueChanges({ idField: 'id' });
+     }
+   //13 
+     else if ( citySelected ) {
+            console.log('13');
+
+       return this.firestore
+         .collection<startup>('startups', (ref) =>
+           ref
+            
+             .where('city', '==', citySelected)
+            
+         )
+         .valueChanges({ idField: 'id' });
+     }
+    //  14
+      else if ( yearSelected ) {
+              console.log('14');
+
+        return this.firestore
+          .collection<startup>('startups', (ref) =>
+            ref
+            
+              .where('yearOfEstablishment', '==', yearSelected)
+              
+          )
+          .valueChanges({ idField: 'id' });
+      }
+      // 15
+      else if (
+       
+         employeesSelected
+       ) {
+              console.log('15');
+
+         return this.firestore
+           .collection<startup>('startups', (ref) =>
+             ref
+     
+               .where('numOfEmployees', '==', employeesSelected)
+           )
+           .valueChanges({ idField: 'id' });
+       }
+       // 16
+       else {
+         console.log('Please select');
+         return this.startupCollection.valueChanges({ idField: 'id' });
+       }
   }
 }

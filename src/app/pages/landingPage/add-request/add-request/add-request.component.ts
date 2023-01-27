@@ -78,14 +78,15 @@ export class AddRequestComponent {
   }
 
   upload(event: Event) {
-    // console.log(event);
+    console.log(event)
+ 
     let file = (event.target as HTMLInputElement)?.files?.[0];
     if (file) {
       this.loading = true;
       this.storage.uploadimage(file).subscribe((value) => {
         this.loading = false;
         this.downloadUrl = value;
-        console.log(value);
+       
       });
     }
   }

@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { DeleteComponent } from '../delete/delete.component';
+import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 @Component({
   selector: 'app-all-startups',
   templateUrl: './all-startups.component.html',
@@ -37,7 +38,7 @@ export class AllStartupsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private CRUDService: CRUDService, public dialog: MatDialog) {}
+  constructor(private CRUDService: CRUDService, public dialog: MatDialog,private loader:LoadingService) {}
 
   ngOnInit(): void {
     this.getSectors();
@@ -45,6 +46,7 @@ export class AllStartupsComponent implements OnInit {
     this.getNoOfRequests();
     this.getNoOfsectors();
     this.getNoOfstartups();
+    this.loader.hide();
   }
   getStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
@@ -69,6 +71,7 @@ export class AllStartupsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.getStartups();
+        this.loader.hide();
     });
   }
   // get sectors to filter
@@ -87,6 +90,7 @@ export class AllStartupsComponent implements OnInit {
     this.CRUDService.getStartup().subscribe((response) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
+       this.loader.hide();
     });
   }
   // numbers  on cards

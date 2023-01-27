@@ -22,11 +22,18 @@ mat-toolbar {
 /* sidenav */
 .sidenav {
     width: 250px;
-   
+   min-height: 100vh;
     position:fixed;
     top: 0;
     left: 0;
 background-color: #E5E5E5;
+box-shadow: 300px 0px 500px 200px rgb(131, 131, 131);
+
+}
+@media(min-width:568px){
+.sidenav {
+    box-shadow: none;
+}
 }
 .sideNavContainer{
     position: relative;
@@ -91,4 +98,11 @@ font-size: 2rem;
  .navbar-container .navbar .navbar-brand  h1 span {
   color: var(--davys-grey);
   
+}
+.pdf {
+    cursor: pointer;
+   
+}
+.pdf .iconPDF {
+ margin-left: 1.9rem;
 }

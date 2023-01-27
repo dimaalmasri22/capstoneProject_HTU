@@ -4,6 +4,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import { Router } from '@angular/router';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
+import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 import { FilestorageService } from 'src/app/lib/services/storage/filestorage.service';
 
@@ -19,7 +20,8 @@ export class AddStartupComponent implements OnInit {
     private fb: FormBuilder,
     private CRUDservice: CRUDService,
     private router: Router,
-    private storage: FilestorageService
+    private storage: FilestorageService,
+    private loader:LoadingService
   ) {}
   ngOnInit(): void {
     this.getSectors();
@@ -62,6 +64,7 @@ export class AddStartupComponent implements OnInit {
   getSectors() {
     this.CRUDservice.getSector().subscribe((response) => {
       this.sectorCheckbox = response;
+      this.loader.hide();
     });
   }
   onChange(event: any, i: number, sector: string) {

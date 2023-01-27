@@ -4,31 +4,51 @@
     height: auto;
     width: 100%;
     min-height: 75vh;
+     
+
 }
 .container .content{
   display: flex;
   flex-direction: column;
     align-items: center;
     justify-content: center;
-   row-gap: 6rem;
+   row-gap: 1rem;
    
    font-size: 1.4rem;
 }
-.container .content div {
+.container .content  .info {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    /* justify-content: space-around; */
-    align-items: baseline;
+    grid-template-columns: repeat(2,0.7fr);
+    justify-content: center;
+    align-items: center;
  word-wrap: break-word;
-
+ padding: 4rem;
+border:1px solid  orange ;
+border-radius: 2rem;
+row-gap: 1.2rem;
+}
+.c { 
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    column-gap: 12px;
+}
+.c h2 , .c h4  {
+    align-self: baseline;
+    word-wrap: break-word;
+}
+.c h4 {
+       color: var(--davys-grey);
+}
+.c img {
+    align-self: flex-start;
 }
 .container .content .info {
-       width: 100%;
+       width: 60%;
+       
       
 }
-.container .content .info:nth-child(even){
-    margin-left: 7rem;
-}
+
 .image  img{
     width: 200px;
     height: auto;
@@ -38,25 +58,72 @@
     width: 100%;
 }
 .actions button {
-    border: 1px solid black;
+    border: 1px solid var(--davys-grey);
+    
     position: relative;
-    left: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* left: 75%;
     align-self: center;
-   width: 50%;
+   */
 }
-@media (max-width: 900px){
-    
-    .container .content div {
-    
+a {
+    text-decoration: none;
+    color: var(--davys-grey);
+}
+.comp {
+    display: flex;
+}
+.comp span {
+    color:var(--davys-grey)
+}
+@media (max-width:1265px){
+.container .content .info {
+       width: 80%;
+       
+      
+}
+}
+@media (max-width:950px){
+.container .content .info {
+       width: 85%;
+       
+      
+}
+}
+@media (max-width:893px){
+.container .content .info {
+       width: 70%;
+       
+      
+}
+.container .content  .info {
     display: flex;
     flex-direction: column;
-   
-}
-.actions button {
-    position: relative;
-    left: 0;
-    align-self: center;
-    width: 100%;
+    align-items: flex-start;
+    padding: 2rem;
 }
 
+}
+@media (max-width:500px){
+    .container .content .info {
+       padding-left: 1rem;
+       width: 80%;
+ overflow:auto;
+    }
+}
+@media (max-width:375px){
+    .container .content  .info {
+       
+border-top: 1px solid orange;
+border-bottom: 1px solid orange;
+
+    width: 100%;
+    overflow:auto;
+   
+    }
+    .c {
+        padding: 1rem;
+    
+    }
 }

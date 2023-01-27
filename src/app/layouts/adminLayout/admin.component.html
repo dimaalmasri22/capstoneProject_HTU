@@ -1,5 +1,5 @@
 
-<div class="navbar-container" >
+<div class="navbar-container"  #content>
   <mat-sidenav-container class="navbarSidenavContainer">
     <!-- side nav -->
     <mat-sidenav #drawer class="sidenav" mode="side" >
@@ -7,24 +7,26 @@
       <div>
         
 
-        <a class="nav-link" routerLink="/"><mat-icon>home</mat-icon><p>Home</p></a>
+        <a class="nav-link" routerLink="/" (click)="drawer.toggle()"><mat-icon>home</mat-icon><p>Home</p></a>
       </div>
 
       <div>
        
-        <a class="nav-link" routerLink="/admin">  <mat-icon class="dashboard">dashboard</mat-icon><p>Dashboard</p></a>
+        <a class="nav-link" routerLink="/admin" (click)="drawer.toggle()">  <mat-icon class="dashboard">dashboard</mat-icon><p>Dashboard</p></a>
       </div>
       <div>
         
-        <a class="nav-link" routerLink="/admin/startupForm"><mat-icon>add</mat-icon><p>startup</p></a>
+        <a class="nav-link" routerLink="/admin/startupForm" (click)="drawer.toggle()"><mat-icon>add</mat-icon><p>startup</p></a>
       </div>
       <div>
        
-     <a  class="addSectorStyle" (click)="addingSector()"> <mat-icon>add</mat-icon><p>Sector</p></a>
+     <a  class="addSectorStyle" (click)="addingSector()" (click)="drawer.toggle()"> <mat-icon>add</mat-icon><p>Sector</p></a>
       </div>
        <div>
-        <a class="nav-link" routerLink="/admin/Requests"> <span> <mat-icon class="notifications">notifications</mat-icon><span *ngIf="NoOfRequests!=0"> {{NoOfRequests}}</span></span><p>Requests </p></a>
+        <a class="nav-link" routerLink="/admin/Requests" (click)="drawer.toggle()"> <span> <mat-icon class="notifications">notifications</mat-icon><span *ngIf="NoOfRequests!=0"> {{NoOfRequests}}</span></span><p>Requests </p></a>
+
       </div>
+      <div><a class="nav-link pdf" (click)="exportPDF()" (click)="drawer.toggle()"><span class="iconPDF"><i class="fa-regular fa-file-pdf"></i></span><p>Export PDF</p></a></div>
       </div>
     </mat-sidenav>
 

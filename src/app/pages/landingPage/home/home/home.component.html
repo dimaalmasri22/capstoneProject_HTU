@@ -1,13 +1,15 @@
-<div class="content">
+<div  class="content"  >
+  <!-- (mousemove)="position($event)" -->
+  
   <div class="intro" >
     <mat-card class="card " [class.fadeIn1]="fade">
       <h1 [class.fadeIn2]="fade">Your Entryway To Startups In Jordan</h1>
      
     </mat-card>
   </div>
- 
-  <div>
-    <div class="colorBackground"></div>
+     <div class="colorBackground"></div>
+
+  <div class="contentHome">
      
         <div class="filterContainer" >
           
@@ -15,7 +17,7 @@
     <mat-form-field appearance="outline" class="filter">
       <mat-label>Filter by sector</mat-label>
       <mat-select>
-       <mat-option selected value=undefined (click)="reshowStartups()"
+       <mat-option  [value]="undefined" (click)="reshowStartupsS()"
           >all</mat-option
         >
         <mat-option
@@ -32,7 +34,7 @@
 <mat-label>Filter by cities</mat-label>
       <mat-select>
 
-         <mat-option selected value=undefined (click)="reshowStartups()"
+         <mat-option selected [value]="undefined" (click)="reshowStartupsC()"
           >all</mat-option
         >
         <mat-option
@@ -47,7 +49,7 @@
      <mat-form-field appearance="outline">
 <mat-label>Filter by number of employees</mat-label>
       <mat-select>
-      <mat-option selected value=undefined (click)="reshowStartups()"
+      <mat-option selected [value]="undefined" (click)="reshowStartupsE()"
           >all</mat-option
         >
         <mat-option
@@ -63,7 +65,7 @@
      <mat-form-field appearance="outline">
 <mat-label>Filter by year</mat-label>
       <mat-select>
-        <mat-option selected value=null (click)="reshowStartups()"
+        <mat-option selected [value]="undefined" (click)="reshowStartupsY()"
           >all</mat-option>
         <mat-option
           *ngFor="let Year of YearOfEstablishment"
@@ -97,9 +99,8 @@
       </div>
     </div>
   </div>
-  <div class="share"
+  <div  class="hideShare" [class.share]="show"
   >  
- 
   <share-buttons theme="circles-dark"  
     [include]="[ 'facebook', 'email','linkedin',  'whatsapp']"
     [showIcon]="true"

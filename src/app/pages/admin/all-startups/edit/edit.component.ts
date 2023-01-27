@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
+import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 import { FilestorageService } from 'src/app/lib/services/storage/filestorage.service';
 
@@ -24,7 +25,8 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute,
     private CRUDservice: CRUDService,
     private router: Router,
-    private storage: FilestorageService
+    private storage: FilestorageService,
+    private loader:LoadingService
   ) {
     this.startup$ = this.route.paramMap.pipe(
       switchMap((value) => {
@@ -37,7 +39,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.startup$.subscribe((value) => {
       this.startup = value;
-
+this.loader.hide();
       this.getSectors(this.startup?.sector ?? []);
     });
   }
@@ -63,11 +65,9 @@ export class EditComponent implements OnInit {
   }
 
   getSectors(sectors: string[]) {
-    console.log(sectors);
     this.CRUDservice.getSector().subscribe((response) => {
       this.sectors = response;
       this.sectorCheckbox = response.map((sector) => {
-        console.log(sectors.indexOf(sector.sector) != -1);
         return {
           sector: sector,
           isSelected: sectors.indexOf(sector.sector) != -1,
@@ -77,7 +77,6 @@ export class EditComponent implements OnInit {
   }
 
   checkSector(obj: any) {
-    console.log(this.sectorCheckbox);
     obj.isSelected = !obj.isSelected;
   }
 
