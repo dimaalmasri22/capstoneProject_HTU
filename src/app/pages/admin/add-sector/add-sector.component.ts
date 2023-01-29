@@ -1,7 +1,8 @@
-import { Component, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, Inject, OnDestroy } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { AuthService } from 'src/app/lib/services/auth/auth.service';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
@@ -12,7 +13,8 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
   templateUrl: './add-sector.component.html',
   styleUrls: ['./add-sector.component.css'],
 })
-export class AddSectorComponent {
+export class AddSectorComponent implements OnDestroy {
+  destroy?: Subscription;
   constructor(
     private crudService: CRUDService,
     private dialogRef: MatDialogRef<AddSectorComponent>,
@@ -31,12 +33,14 @@ export class AddSectorComponent {
     this.crudService
       .addSector({ ...this.form.value } as Sectors)
       .subscribe((_) => {
-      
         this.dialogRef.close(true);
       });
   }
   closeTheDialogue() {
     this.dialogRef.close(true);
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }
 

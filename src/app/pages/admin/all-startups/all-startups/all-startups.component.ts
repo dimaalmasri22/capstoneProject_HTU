@@ -1,5 +1,5 @@
 
-import {  Component, OnInit, ViewChild } from '@angular/core';
+import {  Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 
@@ -8,15 +8,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { DeleteComponent } from '../delete/delete.component';
 import { LoadingService } from 'src/app/lib/services/loading/loading.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-all-startups',
   templateUrl: './all-startups.component.html',
   styleUrls: ['./all-startups.component.css'],
 })
-export class AllStartupsComponent implements OnInit {
+export class AllStartupsComponent implements OnInit, OnDestroy {
   NoOfRequests!: number;
   NoOfSectors!: number;
   NoOfStartups!: number;
+  destroy?: Subscription;
   sectors: Sectors[] = [
     {
       sector: '',
@@ -28,17 +30,25 @@ export class AllStartupsComponent implements OnInit {
   displayedColumns: string[] = [
     'Logo',
     'Company Name',
+    'Founder name',
     'City',
     'Sector',
     'Year Of Establishment',
+    'Number Of Employees',
     'Website',
+    'Email',
+    'Phone number',
     'Edit',
     'Delete',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private CRUDService: CRUDService, public dialog: MatDialog,private loader:LoadingService) {}
+  constructor(
+    private CRUDService: CRUDService,
+    public dialog: MatDialog,
+    private loader: LoadingService
+  ) {}
 
   ngOnInit(): void {
     this.getSectors();
@@ -71,7 +81,7 @@ export class AllStartupsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.getStartups();
-        this.loader.hide();
+      this.loader.hide();
     });
   }
   // get sectors to filter
@@ -90,7 +100,7 @@ export class AllStartupsComponent implements OnInit {
     this.CRUDService.getStartup().subscribe((response) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
-       this.loader.hide();
+      this.loader.hide();
     });
   }
   // numbers  on cards
@@ -108,5 +118,8 @@ export class AllStartupsComponent implements OnInit {
     this.CRUDService.getLengthStartup().subscribe(
       (response) => (this.NoOfStartups = response.length)
     );
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }

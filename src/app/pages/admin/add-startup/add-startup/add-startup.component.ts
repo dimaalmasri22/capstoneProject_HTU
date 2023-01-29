@@ -1,7 +1,8 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { LoadingService } from 'src/app/lib/services/loading/loading.service';
@@ -13,7 +14,8 @@ import { FilestorageService } from 'src/app/lib/services/storage/filestorage.ser
   templateUrl: './add-startup.component.html',
   styleUrls: ['./add-startup.component.css'],
 })
-export class AddStartupComponent implements OnInit {
+export class AddStartupComponent implements OnInit , OnDestroy {
+  destroy?:Subscription;;
   sectorCheckbox: Sectors[] = [];
   downloadUrl?: string;
   constructor(
@@ -21,15 +23,13 @@ export class AddStartupComponent implements OnInit {
     private CRUDservice: CRUDService,
     private router: Router,
     private storage: FilestorageService,
-    private loader:LoadingService
+    private loader: LoadingService
   ) {}
   ngOnInit(): void {
     this.getSectors();
   }
   form = this.fb.group({
     companyName: ['', [Validators.required]],
-    // logo: ['', [Validators.required, secureUrlValidatorFactory('https')]],
-    // logo:this.downloadUrl,
     city: ['', [Validators.required]],
     founder: [''],
     numOfEmployees: ['', [Validators.min(0)]],
@@ -51,14 +51,13 @@ export class AddStartupComponent implements OnInit {
   addSector(sector: string) {
     const sectorsFormGroup = new FormControl(sector, Validators.required);
     this.sectors.push(sectorsFormGroup);
-   
   }
-  // deleteSector(index: number) {
-  //   this.sectors.removeAt(index);
-  // }
 
   submit() {
-    this.CRUDservice.addStartup({ ...this.form.value ,logo:this.downloadUrl} as startup);
+    this.CRUDservice.addStartup({
+      ...this.form.value,
+      logo: this.downloadUrl,
+    } as startup);
     this.router.navigate(['/admin']);
   }
   getSectors() {
@@ -79,14 +78,16 @@ export class AddStartupComponent implements OnInit {
     }
   }
   upload(event: Event) {
-    // console.log(event);
     let file = (event.target as HTMLInputElement)?.files?.[0];
     if (file) {
       this.storage.uploadimage(file).subscribe((value) => {
         this.downloadUrl = value;
-      console.log(value);
+        console.log(value);
       });
     }
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }
 

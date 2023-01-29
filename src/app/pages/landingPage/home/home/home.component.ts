@@ -1,4 +1,5 @@
-import { Component, HostListener,OnInit} from '@angular/core';
+import { Component, HostListener,OnDestroy,OnInit} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { LoadingService } from 'src/app/lib/services/loading/loading.service';
@@ -9,7 +10,7 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   sectors: Sectors[] = [];
   cities: string[] = [];
   NoOfEmployees: number[] = [];
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
   show: boolean = false;
   startups: startup[] = [];
 
+  destroy?: Subscription;
 
   constructor(
     private CRUDService: CRUDService,
@@ -123,42 +125,7 @@ export class HomeComponent implements OnInit {
       this.show = false;
     }
   }
-  // position(ev: MouseEvent) {
-  //   if (ev.screenX > 1000) {
-  //     this.show = true;
-  //   } else {
-  //     this.show = false;
-  //   }
-  // }
-  // makePdf() {
-  //   let pdf = new jsPDF('p', 'pt', 'a0', true);
-
-  //   pdf.html(this.el.nativeElement, {
-  //     callback: (pdf) => {
-  //       pdf.save('sample.pdf');
-  //     },
-  //   });
-  // }
-  // exportPDF() {
-  //   html2canvas(this.el.nativeElement).then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/jpeg")
-
-  //     const pdf = new jsPDF({
-  //       orientation:"portrait"
-  //     })
-
-  //     const imageProps = pdf.getImageProperties(imgData)
-
-  //     const pdfw = pdf.internal.pageSize.getWidth()
-
-  //     const pdfh = (imageProps.height * pdfw) / imageProps.width
-
-  //     pdf.addImage(imgData, 'PNG', 0, 0, pdfw, pdfh)
-
-  //     pdf.save("output.pdf")
-  //   })
-
-  // }
-
-  // window?:any?.addEventListener('mousemove'?:any,function(e:any) {console.log(e)})
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
+  }
 }

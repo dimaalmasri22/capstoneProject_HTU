@@ -1,7 +1,7 @@
-import {  Component, Input } from '@angular/core';
+import {  Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
+import {  Subscription } from 'rxjs';
 import { AuthService } from 'src/app/lib/services/auth/auth.service';
 import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 
@@ -10,7 +10,8 @@ import { LoadingService } from 'src/app/lib/services/loading/loading.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
+  destroy?:Subscription;
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
@@ -19,8 +20,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private loading: LoadingService,
-    
+    private loading: LoadingService
   ) {}
 
   get email() {
@@ -35,7 +35,6 @@ export class LoginComponent {
     this.auth
       .signIn(this.email?.value + '', this.password?.value + '')
       .then(() => {
-          
         //navigate to admin/
         this.router.navigate(['/admin']);
       })
@@ -43,5 +42,8 @@ export class LoginComponent {
         alert('Invalid Login Please Try Again');
         this.loading.hide();
       });
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }

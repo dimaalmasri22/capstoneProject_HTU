@@ -57,7 +57,7 @@ export class AdminComponent implements OnInit {
   }
 addingInfoToArray(){
   this.info =this.startups.map((object) => {
-    return [object.companyName, object.sector, object.website];
+    return [object.companyName, object.sector, object.website,object.email,object.founder,object.phone,object.numOfEmployees,object.yearOfEstablishment,object.city];
 
   });
 }
@@ -65,9 +65,7 @@ addingInfoToArray(){
     // html2canvas(this.el.nativeElement).then((canvas) => {
     //   const imgData = canvas.toDataURL('image/jpeg');
 this.addingInfoToArray();
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-      });
+      const pdf = new jsPDF('l');
 
     //   const imageProps = pdf.getImageProperties(imgData);
 
@@ -81,23 +79,48 @@ this.addingInfoToArray();
     // });
    
 autoTable(pdf, {
-  head: [['company Name', 'Sector', 'website']],
-body:this.info})
-// Array.from(this.startups).map(({ companyName, numOfEmployees, website }) => [
-//   companyName,
-//   numOfEmployees,
-//   website,
-// ]);
+  startY: false,
+  theme: 'striped',
+  tableWidth: 'auto',
+  showHead: 'everyPage',
+  tableLineColor: 300,
+  tableLineWidth: 0,
+  head: [
+    [
+      'company Name',
+      'Sector',
+      'website',
+      'email',
+      'founder name',
+      'phone number',
+      'number of employees',
+      'year of establishment',
+      'city',
+    ],
+  ],
+  body: this.info,
+  columnStyles: {
+    0: { cellWidth: 'auto' },
+    1: { cellWidth: 50 },
+    2: { cellWidth: 50 },
+    3: { cellWidth: 40 },
+    4: { cellWidth: 'auto' },
+    5: { cellWidth: 30 },
+    6: { cellWidth: 20 },
+    7: { cellWidth: 20 },
+    8: { cellWidth: 20 },
+    // etc
+  },
 
+  styles: {
+    overflow: 'linebreak',
+    cellWidth: 'wrap',
+    font: 'arial',
+    fontSize: 7,
+    cellPadding: 2,
+  },
+});
 
-// autoTable(pdf, {
-//   head: [['Name', 'Email', 'Country']],
-//   body: [
-//     ['David', 'david@example.com', 'Sweden'],
-//     ['Castille', 'castille@example.com', 'Spain'],
-//     // ...
-//   ],
-// });
 
 pdf.save('table.pdf');
   }

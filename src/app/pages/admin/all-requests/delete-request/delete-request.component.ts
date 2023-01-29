@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/lib/services/auth/auth.service';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 
@@ -8,7 +9,8 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
   templateUrl: './delete-request.component.html',
   styleUrls: ['./delete-request.component.css'],
 })
-export class DeleteRequestComponent {
+export class DeleteRequestComponent implements OnDestroy {
+  destroy?:Subscription;
   constructor(
     private startupsService: CRUDService,
     private dialogRef: MatDialogRef<DeleteRequestComponent>,
@@ -22,5 +24,8 @@ export class DeleteRequestComponent {
     this.startupsService.deleteRequest(this.data.id).subscribe((_) => {
       this.dialogRef.close(true);
     });
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }

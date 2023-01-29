@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { LoadingService } from 'src/app/lib/services/loading/loading.service';
@@ -13,33 +12,33 @@ import { FilestorageService } from 'src/app/lib/services/storage/filestorage.ser
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css'],
 })
-export class EditComponent implements OnInit {
-  hide?:boolean=false;
+export class EditComponent implements OnInit, OnDestroy {
+  hide?: boolean = false;
   downloadUrl?: string;
   sectors: Sectors[] = [];
   sectorCheckbox: { sector: Sectors; isSelected: boolean }[] = [];
   startup?: startup;
   startup$!: Observable<startup | undefined>;
   id!: string;
+  destroy?: Subscription;
   constructor(
     private route: ActivatedRoute,
     private CRUDservice: CRUDService,
     private router: Router,
     private storage: FilestorageService,
-    private loader:LoadingService
-  ) {
+    private loader: LoadingService
+  ) {}
+
+  ngOnInit(): void {
     this.startup$ = this.route.paramMap.pipe(
       switchMap((value) => {
         this.id = value.get('id') + '';
         return this.CRUDservice.getStartupById(this.id);
       })
     );
-  }
-
-  ngOnInit(): void {
     this.startup$.subscribe((value) => {
       this.startup = value;
-this.loader.hide();
+      this.loader.hide();
       this.getSectors(this.startup?.sector ?? []);
     });
   }
@@ -49,17 +48,18 @@ this.loader.hide();
         .filter((val) => val.isSelected)
         .map((e) => e.sector.sector);
     }
-   if(this.downloadUrl){ this.CRUDservice.updateStartup(this.id, {
-     ...startup,
-     sector: this.startup?.sector,
-     logo: this.downloadUrl,
-   });}
-   else{ this.CRUDservice.updateStartup(this.id, {
-     ...startup,
-     sector: this.startup?.sector
-   });}
-   
-   
+    if (this.downloadUrl) {
+      this.CRUDservice.updateStartup(this.id, {
+        ...startup,
+        sector: this.startup?.sector,
+        logo: this.downloadUrl,
+      });
+    } else {
+      this.CRUDservice.updateStartup(this.id, {
+        ...startup,
+        sector: this.startup?.sector,
+      });
+    }
 
     this.router.navigate(['/admin']);
   }
@@ -86,10 +86,12 @@ this.loader.hide();
     if (file) {
       this.storage.uploadimage(file).subscribe((value) => {
         this.downloadUrl = value;
-        this.hide=true;
-     
+        this.hide = true;
       });
     }
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }
 

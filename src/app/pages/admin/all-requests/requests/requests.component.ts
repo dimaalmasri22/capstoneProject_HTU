@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
@@ -13,16 +14,21 @@ import { DeleteRequestComponent } from '../delete-request/delete-request.compone
   templateUrl: './requests.component.html',
   styleUrls: ['./requests.component.css'],
 })
-export class RequestsComponent {
+export class RequestsComponent implements OnInit, OnDestroy {
   Allrequests: startup[] = [];
   dataSource!: MatTableDataSource<any>;
+  destroy?: Subscription;
   displayedColumns: string[] = [
     'Logo',
     'Company Name',
+    'Founder name',
     'City',
     'Sector',
     'Year Of Establishment',
+    'Number Of Employees',
     'Website',
+    'Email',
+    'Phone number',
     'Edit',
     'Delete',
   ];
@@ -39,7 +45,7 @@ export class RequestsComponent {
     this.getStartups();
   }
   getStartups() {
-     this.CRUDservice.getRequests().subscribe((response) => {
+    this.CRUDservice.getRequests().subscribe((response) => {
       // this.startups = response;
       this.loader.hide();
       this.dataSource = new MatTableDataSource(response);
@@ -75,5 +81,8 @@ export class RequestsComponent {
       //refresh table
       this.getStartups();
     });
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }

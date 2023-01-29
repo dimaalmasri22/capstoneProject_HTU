@@ -39,11 +39,21 @@
     <th mat-header-cell *matHeaderCellDef>Company Name</th>
     <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
   </ng-container>
-
+   <!-- founder Column -->
+  <ng-container matColumnDef="Founder name" >
+    <th mat-header-cell *matHeaderCellDef>Founder Name</th>
+    <td mat-cell *matCellDef="let element" >
+      <ng-container *ngIf="element.founder">{{ element.founder}}</ng-container>
+      <ng-container *ngIf="!element.founder">-</ng-container>
+    </td>
+  </ng-container>
   <!-- City Column -->
   <ng-container matColumnDef="City">
     <th mat-header-cell *matHeaderCellDef>City</th>
-    <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.city">{{ element.city}}</ng-container>
+      <ng-container *ngIf="!element.city">-</ng-container>
+    </td>
   </ng-container>
 
   <!-- Sector Column -->
@@ -55,14 +65,40 @@
   <ng-container matColumnDef="Year Of Establishment">
     <th mat-header-cell *matHeaderCellDef>Year Of Establishment</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.yearOfEstablishment }}
+   {{ element.yearOfEstablishment}}
+    </td>
+  </ng-container>
+    <!-- number of employess Column -->
+  <ng-container matColumnDef="Number Of Employees" >
+    <th mat-header-cell *matHeaderCellDef>Number of Employees</th>
+    <td mat-cell *matCellDef="let element" >
+ {{ element.numOfEmployees}}
     </td>
   </ng-container>
   <!-- Website Column -->
   <ng-container matColumnDef="Website">
     <th mat-header-cell *matHeaderCellDef>Website</th>
-    <td mat-cell *matCellDef="let element">{{ element.website }}</td>
+    <td mat-cell *matCellDef="let element">
+   {{ element.website}}
+    </td>
   </ng-container>
+    <!-- Email Column -->
+  <ng-container matColumnDef="Email" >
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let element" >
+      <ng-container *ngIf="element.email">{{ element.email}}</ng-container>
+      <ng-container *ngIf="!element.email">-</ng-container>
+    </td>
+  </ng-container>
+     <!-- phone number Column -->
+  <ng-container matColumnDef="Phone number" >
+    <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+    <td mat-cell *matCellDef="let element" >
+      <ng-container *ngIf="element.phone">{{ element.phone}}</ng-container>
+      <ng-container *ngIf="!element.phone">-</ng-container>
+    </td>
+  </ng-container>
+  
   <!-- Edit Column -->
   <ng-container matColumnDef="Edit">
     <th mat-header-cell *matHeaderCellDef>Edit</th>

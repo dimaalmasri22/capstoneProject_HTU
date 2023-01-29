@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Sectors } from 'src/app/lib/interfaces/sector';
 import { startup } from 'src/app/lib/interfaces/startup';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
@@ -11,18 +12,17 @@ import { FilestorageService } from 'src/app/lib/services/storage/filestorage.ser
   templateUrl: './add-request.component.html',
   styleUrls: ['./add-request.component.css'],
 })
-export class AddRequestComponent {
-  loading:boolean = false;
+export class AddRequestComponent implements OnInit, OnDestroy {
+  loading: boolean = false;
   downloadUrl?: string;
   sectorCheckbox: Sectors[] = [];
+  destroy?: Subscription;
   constructor(
     private fb: FormBuilder,
     private CRUDservice: CRUDService,
     private router: Router,
     private storage: FilestorageService
-  ) {
-    
-  }
+  ) {}
   ngOnInit(): void {
     this.getSectors();
   }
@@ -53,8 +53,10 @@ export class AddRequestComponent {
   }
 
   submit() {
-    
-    this.CRUDservice.addStartupRequest({ ...this.form.value,logo:this.downloadUrl } as startup);
+    this.CRUDservice.addStartupRequest({
+      ...this.form.value,
+      logo: this.downloadUrl,
+    } as startup);
     alert('adding startup request has been submitted ');
     this.router.navigate(['/']);
   }
@@ -78,17 +80,19 @@ export class AddRequestComponent {
   }
 
   upload(event: Event) {
-    console.log(event)
- 
+    console.log(event);
+
     let file = (event.target as HTMLInputElement)?.files?.[0];
     if (file) {
       this.loading = true;
       this.storage.uploadimage(file).subscribe((value) => {
         this.loading = false;
         this.downloadUrl = value;
-       
       });
     }
+  }
+  ngOnDestroy(): void {
+    this.destroy?.unsubscribe();
   }
 }
 
