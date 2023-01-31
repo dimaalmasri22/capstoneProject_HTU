@@ -17,7 +17,8 @@ import {AngularFireStorageModule}from '@angular/fire/compat/storage';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { HeaderModule } from './lib/components/header/header.module';
 import { SpinnerComponent } from './lib/components/spinner/spinner.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerModule } from './lib/components/spinner/spinner.module';
+
 
 
 
@@ -26,7 +27,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AppComponent,
     AddSectorComponent,
     PageNotFoundComponent,
-    SpinnerComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -40,11 +41,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AngularFirestoreModule,
     AngularFireStorageModule,
     HeaderModule,
-  
+    SpinnerModule
   ],
-  providers: [
-  
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

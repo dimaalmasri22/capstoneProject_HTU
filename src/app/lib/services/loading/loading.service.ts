@@ -12,6 +12,7 @@ export class LoadingService {
 
   show() {
     this._loading.next(true);
+    
   }
 
   hide() {

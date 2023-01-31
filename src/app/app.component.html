@@ -1,8 +1,7 @@
-<!-- <mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading$ | async"></mat-progress-spinner> -->
+
 <ng-container *ngIf="loading$ | async">
-  <div class="overlay"></div>
-  <!-- <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>   -->
-  <app-spinner *ngIf="loading$ | async"></app-spinner>
+  <div class="overlay">
+  <app-spinner ></app-spinner></div>
 </ng-container>
 
 <router-outlet >  

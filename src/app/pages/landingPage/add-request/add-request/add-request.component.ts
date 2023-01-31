@@ -63,7 +63,7 @@ export class AddRequestComponent implements OnInit, OnDestroy {
   getSectors() {
     this.CRUDservice.getSector().subscribe((response) => {
       this.sectorCheckbox = response;
-      console.log(this.sectorCheckbox);
+     
     });
   }
   onChange(event: any, i: number, sector: string) {

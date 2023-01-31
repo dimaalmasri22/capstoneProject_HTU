@@ -2,23 +2,11 @@
 .navbar-container{
     position: relative;
 }
-/* top Navbar */
-.navbar-spacer {
-  flex: 1 1 auto;
+.sideNavContainer{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.navbar-brand {
-  text-decoration: none;
-  color: white;
-}
-.inputSearch {
-    align-self: flex-start;
-   
-}
-mat-toolbar {
- overflow: hidden;
- background-color: #FCA311;
-}
-
 /* sidenav */
 .sidenav {
     width: 250px;
@@ -29,16 +17,6 @@ mat-toolbar {
 background-color: #E5E5E5;
 box-shadow: 300px 0px 500px 200px rgb(131, 131, 131);
 
-}
-@media(min-width:568px){
-.sidenav {
-    box-shadow: none;
-}
-}
-.sideNavContainer{
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
 }
 .sidenav div div {
     display: flex;
@@ -72,11 +50,6 @@ margin: 2rem 0;
 .addSectorStyle:hover{
     cursor: pointer;
 }
-@media (max-width:319px){
-.navbar-brand {
-    display: none;
-}
-}
 
 /* notificationnumber */
 .nav-link span span {
@@ -85,9 +58,27 @@ margin: 2rem 0;
    bottom: 15px;
    color: red;
 }
+.pdf {
+    cursor: pointer;
+   
+}
+.pdf .iconPDF {
+ margin-left: 1.9rem;
+}
+/* top Navbar */
+mat-toolbar {
+ overflow: hidden;
+ background-color: #FCA311;
+}
 
-/* update */
- .navbar-container .navbar .navbar-brand {
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+.navbar-brand {
+  text-decoration: none;
+  color: white;
+}
+.navbar-container .navbar .navbar-brand {
   text-decoration:none ;
 
 }
@@ -99,10 +90,19 @@ font-size: 2rem;
   color: var(--davys-grey);
   
 }
-.pdf {
-    cursor: pointer;
-   
+
+@media(min-width:568px){
+.sidenav {
+    box-shadow: none;
 }
-.pdf .iconPDF {
- margin-left: 1.9rem;
 }
+
+@media (max-width:319px){
+.navbar-brand {
+    display: none;
+}
+}
+
+
+
+ 

@@ -16,8 +16,12 @@ background-color: white;
 }
 
 .toolbar .imageLogo a {
+
   text-decoration:none ;
   color: var(--davys-grey);
+}
+.toolbar .imageLogo a img {
+  height: 30px;
 }
 .toolbar .imageLogo a h1 , .toolbar .imageLogo a h1 span {
     font-weight: 900;

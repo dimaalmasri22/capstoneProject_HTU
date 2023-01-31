@@ -6,12 +6,20 @@ import { FooterModule } from '../lib/components/footer/footer.module';
 import { HeaderModule } from '../lib/components/header/header.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { MaterialModule } from '../lib/components/material/material.module';
+import { SpinnerModule } from '../lib/components/spinner/spinner.module';
 
 
 
 
 @NgModule({
   declarations: [AdminComponent, EndUserComponent],
-  imports: [CommonModule, AppRoutingModule, FooterModule, HeaderModule,MaterialModule],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    FooterModule,
+    HeaderModule,
+    MaterialModule,
+    SpinnerModule
+  ],
 })
 export class LayoutsModule {}

@@ -9,6 +9,7 @@ import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     AllStartupsComponent,DeleteComponent,EditComponent
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AllStartupsRoutingModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+   
   ]
 })
 export class AllStartupsModule { }

@@ -6,9 +6,10 @@ import { LoadingService } from './lib/services/loading/loading.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent  {
   title = 'startupsJo';
   loading$ = this.loader.loading$;
-  // @ViewChild('content', { static: false }) el!: Element;
-  constructor(public loader: LoadingService) {}
+  constructor(public loader: LoadingService) {
+  }
+
 }

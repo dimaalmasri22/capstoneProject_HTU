@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, switchMap } from 'rxjs';
 import { startup } from 'src/app/lib/interfaces/startup';
+import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 import { CRUDService } from 'src/app/lib/services/storage/crud.service';
 @Component({
   selector: 'app-startup-info',
@@ -17,7 +18,8 @@ export class StartupInfoComponent implements OnInit , OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private CRUDservice: CRUDService,
-    private router: Router
+    private router: Router,
+ 
   ) {
   
   }
@@ -31,6 +33,7 @@ export class StartupInfoComponent implements OnInit , OnDestroy {
       );
     this.startup$.subscribe((value) => {
       this.startupInfo = value;
+
     });
   }
   goBackToHome() {

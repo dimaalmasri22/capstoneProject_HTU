@@ -8,16 +8,18 @@ import { AddSectorComponent } from 'src/app/pages/admin/add-sector/add-sector.co
  import jsPDF from 'jspdf';
 import { startup } from 'src/app/lib/interfaces/startup';
 import autoTable from 'jspdf-autotable';
+import { LoadingService } from 'src/app/lib/services/loading/loading.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  isloading: boolean = true;
+ 
   NoOfRequests!: number;
-  info:any[]=[];
-  startups!:startup[];
+  info: any[] = [];
+  startups!: startup[];
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -28,15 +30,14 @@ export class AdminComponent implements OnInit {
   @ViewChild('content', { static: true }) el!: ElementRef<HTMLImageElement>;
   ngOnInit(): void {
     this.getNoOfRequests();
-  this.getstartups();
- 
+    this.getstartups();
   }
-  getstartups(){
-    this.CRUDService.getStartup().subscribe(data => {this.startups=data;
-    })
+  getstartups() {
+    this.CRUDService.getStartup().subscribe((data) => {
+      this.startups = data;
+    });
   }
   addingSector() {
-    
     let dialogRef = this.dialog.open(AddSectorComponent, {
       width: '500px',
     });
@@ -55,73 +56,68 @@ export class AdminComponent implements OnInit {
       (response) => (this.NoOfRequests = response.length)
     );
   }
-addingInfoToArray(){
-  this.info =this.startups.map((object) => {
-    return [object.companyName, object.sector, object.website,object.email,object.founder,object.phone,object.numOfEmployees,object.yearOfEstablishment,object.city];
-
-  });
-}
+  addingInfoToArray() {
+    this.info = this.startups.map((object) => {
+      return [
+        object.companyName,
+        object.sector,
+        object.website,
+        object.email,
+        object.founder,
+        object.phone,
+        object.numOfEmployees,
+        object.yearOfEstablishment,
+        object.city,
+      ];
+    });
+  }
   exportPDF() {
-    // html2canvas(this.el.nativeElement).then((canvas) => {
-    //   const imgData = canvas.toDataURL('image/jpeg');
-this.addingInfoToArray();
-      const pdf = new jsPDF('l');
+ 
+    this.addingInfoToArray();
+    const pdf = new jsPDF('l');
+    autoTable(pdf, {
+      startY: false,
+      theme: 'striped',
+      tableWidth: 'auto',
+      showHead: 'everyPage',
+      tableLineColor: 300,
+      tableLineWidth: 0,
+      head: [
+        [
+          'company Name',
+          'Sector',
+          'website',
+          'email',
+          'founder name',
+          'phone number',
+          'number of employees',
+          'year of establishment',
+          'city',
+        ],
+      ],
+      body: this.info,
+      columnStyles: {
+        0: { cellWidth: 'auto' },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 50 },
+        3: { cellWidth: 40 },
+        4: { cellWidth: 'auto' },
+        5: { cellWidth: 30 },
+        6: { cellWidth: 20 },
+        7: { cellWidth: 20 },
+        8: { cellWidth: 20 },
+        // etc
+      },
 
-    //   const imageProps = pdf.getImageProperties(imgData);
+      styles: {
+        overflow: 'linebreak',
+        cellWidth: 'wrap',
+        font: 'arial',
+        fontSize: 7,
+        cellPadding: 2,
+      },
+    });
 
-    //   const pdfw = pdf.internal.pageSize.getWidth();
-
-    //   const pdfh = (imageProps.height * pdfw) / imageProps.width;
-
-    //   pdf.addImage(imgData, 'PNG', 0, 0, pdfw, pdfh);
-
-    //   pdf.save('output.pdf');
-    // });
-   
-autoTable(pdf, {
-  startY: false,
-  theme: 'striped',
-  tableWidth: 'auto',
-  showHead: 'everyPage',
-  tableLineColor: 300,
-  tableLineWidth: 0,
-  head: [
-    [
-      'company Name',
-      'Sector',
-      'website',
-      'email',
-      'founder name',
-      'phone number',
-      'number of employees',
-      'year of establishment',
-      'city',
-    ],
-  ],
-  body: this.info,
-  columnStyles: {
-    0: { cellWidth: 'auto' },
-    1: { cellWidth: 50 },
-    2: { cellWidth: 50 },
-    3: { cellWidth: 40 },
-    4: { cellWidth: 'auto' },
-    5: { cellWidth: 30 },
-    6: { cellWidth: 20 },
-    7: { cellWidth: 20 },
-    8: { cellWidth: 20 },
-    // etc
-  },
-
-  styles: {
-    overflow: 'linebreak',
-    cellWidth: 'wrap',
-    font: 'arial',
-    fontSize: 7,
-    cellPadding: 2,
-  },
-});
-
-
-pdf.save('table.pdf');
+    pdf.save('table.pdf');
   }
 }

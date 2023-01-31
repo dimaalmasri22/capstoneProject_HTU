@@ -36,9 +36,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
-      // console.log(response);
-      this.loader.hide();
       this.startups = response;
+
       response.forEach((response) => {
         if (response.city && this.cities.indexOf(response.city) === -1) {
           this.cities.push(response.city);
@@ -56,12 +55,14 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.YearOfEstablishment.push(response.yearOfEstablishment);
         }
       });
+      
     });
   }
 
   getSectors() {
     this.CRUDService.getSector().subscribe((response) => {
       this.sectors = response;
+      
     });
   }
 
@@ -69,25 +70,31 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sectorSelected = sector;
 
     this.CRUDService.filterStartups(sector).subscribe(
-      (response) => (this.startups = response)
+      (response) => {this.startups = response;
+      
+      }
     );
   }
   filterCity(city: string) {
     this.citySelected = city;
     this.CRUDService.filterStartupsCity(city).subscribe(
-      (response) => (this.startups = response)
+      (response) => {this.startups = response; 
+      
+      }
     );
   }
   filterEmployees(employee: number) {
     this.employeesSelected = employee;
     this.CRUDService.filterStartupsEmployee(employee).subscribe(
-      (response) => (this.startups = response)
+      (response) => {this.startups = response;}
     );
   }
   filterYear(year: number) {
     this.yearSelected = year;
     this.CRUDService.filterStartupsYear(year).subscribe(
-      (response) => (this.startups = response)
+      (response) => {this.startups = response; 
+     
+      }
     );
   }
   //flitering
@@ -99,6 +106,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.employeesSelected
     ).subscribe((response) => {
       this.startups = response;
+     
     });
   }
   // reshow the startups

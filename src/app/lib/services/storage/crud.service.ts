@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
+  DocumentChangeAction,
 } from '@angular/fire/compat/firestore';
-import { from, Observable } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
 import { Sectors } from '../../interfaces/sector';
 import { startup } from '../../interfaces/startup';
 import { LoadingService } from '../loading/loading.service';
@@ -14,6 +15,7 @@ import { LoadingService } from '../loading/loading.service';
 export class CRUDService {
   startup$?: Observable<startup[]>;
   i!: number;
+ 
   startupCollection!: AngularFirestoreCollection<startup>;
   sectorCollection!: AngularFirestoreCollection<Sectors>;
   requestCollection!: AngularFirestoreCollection<startup>;
@@ -27,7 +29,7 @@ export class CRUDService {
     return from(addedStartup);
   }
   getStartup(): Observable<startup[]> {
-    this.loader.show();
+
     return this.startupCollection.valueChanges({ idField: 'id' })
   }
   getStartupById(id: string) {
@@ -37,7 +39,6 @@ export class CRUDService {
     return from(this.startupCollection.doc(id).delete());
   }
   updateStartup(id: string, startup: startup) {
-    // console.log(startup)
     return from(this.startupCollection.doc(id).update({ ...startup }));
   }
   // Sectors CRUD
@@ -64,7 +65,7 @@ export class CRUDService {
   getRequests(): Observable<startup[]> {
     return this.requestCollection.valueChanges({ idField: 'id' });
   }
-  // get the length of the requests
+  // get the length of the requests / sectors/startups
   getLength() {
     return this.requestCollection.valueChanges({ idField: 'id' });
   }
@@ -108,7 +109,6 @@ export class CRUDService {
   ): Observable<startup[]> {
     // 1
     if (sectorSelected && citySelected && yearSelected && employeesSelected) {
-      console.log('1');
       return this.firestore
         .collection<startup>('startups', (ref) =>
           ref
@@ -121,7 +121,6 @@ export class CRUDService {
     }
     // 2
     else if (sectorSelected && citySelected && yearSelected) {
-            console.log('2');
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -134,7 +133,6 @@ export class CRUDService {
     }
     // 3
     else if (sectorSelected && citySelected && employeesSelected) {
-            console.log('3',sectorSelected);
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -147,7 +145,6 @@ export class CRUDService {
     }
     // 4
     else if (sectorSelected && yearSelected && employeesSelected) {
-            console.log('4');
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -160,7 +157,6 @@ export class CRUDService {
     }
     // 5 
     else if (citySelected && yearSelected && employeesSelected) {
-            console.log('5');
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -173,7 +169,6 @@ export class CRUDService {
     }
     // 6
     else if (sectorSelected && citySelected) {
-            console.log('6');
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -185,7 +180,6 @@ export class CRUDService {
     }
     // 7
     else if (sectorSelected && yearSelected) {
-            console.log('7');
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -197,7 +191,6 @@ export class CRUDService {
     }
     // 8
     else if (sectorSelected && employeesSelected) {
-            console.log('8');
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -209,7 +202,7 @@ export class CRUDService {
     }
     // 9
     else if (citySelected && yearSelected) {
-            console.log('9');
+          
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -221,7 +214,7 @@ export class CRUDService {
     }
     // 10
     else if (citySelected && employeesSelected) {
-            console.log('10');
+           
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -233,7 +226,7 @@ export class CRUDService {
     }
     // 11
     else if (yearSelected && employeesSelected) {
-            console.log('11');
+          
 
       return this.firestore
         .collection<startup>('startups', (ref) =>
@@ -245,7 +238,7 @@ export class CRUDService {
     }
     // 12
      else if (sectorSelected ) {
-            console.log('12');
+          
 
        return this.firestore
          .collection<startup>('startups', (ref) =>
@@ -257,7 +250,7 @@ export class CRUDService {
      }
    //13 
      else if ( citySelected ) {
-            console.log('13');
+           
 
        return this.firestore
          .collection<startup>('startups', (ref) =>
@@ -270,7 +263,7 @@ export class CRUDService {
      }
     //  14
       else if ( yearSelected ) {
-              console.log('14');
+           
 
         return this.firestore
           .collection<startup>('startups', (ref) =>
@@ -286,7 +279,7 @@ export class CRUDService {
        
          employeesSelected
        ) {
-              console.log('15');
+             
 
          return this.firestore
            .collection<startup>('startups', (ref) =>
@@ -298,7 +291,6 @@ export class CRUDService {
        }
        // 16
        else {
-         console.log('Please select');
          return this.startupCollection.valueChanges({ idField: 'id' });
        }
   }

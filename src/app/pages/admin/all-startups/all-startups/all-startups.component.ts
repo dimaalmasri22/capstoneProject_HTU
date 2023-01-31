@@ -47,7 +47,7 @@ export class AllStartupsComponent implements OnInit, OnDestroy {
   constructor(
     private CRUDService: CRUDService,
     public dialog: MatDialog,
-    private loader: LoadingService
+    public loader:LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -56,12 +56,14 @@ export class AllStartupsComponent implements OnInit, OnDestroy {
     this.getNoOfRequests();
     this.getNoOfsectors();
     this.getNoOfstartups();
-    this.loader.hide();
   }
+
   getStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
+      this.loader.hide();
+
     });
   }
 
@@ -94,6 +96,7 @@ export class AllStartupsComponent implements OnInit, OnDestroy {
     this.CRUDService.filterStartups(sector).subscribe((response) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
+      this.loader.hide();
     });
   }
   reshowStartups() {
@@ -105,21 +108,25 @@ export class AllStartupsComponent implements OnInit, OnDestroy {
   }
   // numbers  on cards
   getNoOfsectors() {
-    this.CRUDService.getLengthSector().subscribe(
-      (response) => (this.NoOfSectors = response.length)
-    );
+    this.CRUDService.getLengthSector().subscribe((response) => {
+      this.NoOfSectors = response.length;
+      this.loader.hide();
+    });
   }
   getNoOfRequests() {
-    this.CRUDService.getLength().subscribe(
-      (response) => (this.NoOfRequests = response.length)
-    );
+    this.CRUDService.getLength().subscribe((response) => {
+      this.NoOfRequests = response.length;
+      this.loader.hide();
+    });
   }
   getNoOfstartups() {
-    this.CRUDService.getLengthStartup().subscribe(
-      (response) => (this.NoOfStartups = response.length)
-    );
+    this.CRUDService.getLengthStartup().subscribe((response) => {
+      this.NoOfStartups = response.length;
+      this.loader.hide();
+    });
   }
   ngOnDestroy(): void {
+    
     this.destroy?.unsubscribe();
   }
 }
