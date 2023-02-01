@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.loader.show();
     this.getStartups();
     this.getSectors();
-    this.loader.hide();
+
   }
 
   getStartups() {
@@ -58,14 +58,14 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.YearOfEstablishment.push(response.yearOfEstablishment);
         }
       });
-      
+          this.loader.hide();
     });
   }
 
   getSectors() {
     this.CRUDService.getSector().subscribe((response) => {
       this.sectors = response;
-      
+          
     });
   }
 

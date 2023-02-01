@@ -49,7 +49,9 @@ export class AdminComponent implements OnInit {
     this.auth.signOut().then(() => {
       //navigate to auth
       this.router.navigate(['/auth']);
+      
     });
+    window.location.reload();
   }
   getNoOfRequests() {
     this.CRUDService.getLength().subscribe(

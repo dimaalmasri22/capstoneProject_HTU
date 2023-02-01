@@ -32,8 +32,9 @@ export class StartupInfoComponent implements OnInit, OnDestroy {
     );
     this.startup$.subscribe((value) => {
       this.startupInfo = value;
+       this.loader.hide();
     });
-          this.loader.hide();
+         
 
   }
   goBackToHome() {
