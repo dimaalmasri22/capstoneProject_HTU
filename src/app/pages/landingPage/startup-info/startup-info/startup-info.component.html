@@ -2,71 +2,66 @@
   <div class="content">
     <div class="image">
       <img [src]="[startupInfo?.logo]" height="120px" width="120px" />
-      
-     
     </div>
-    <div class="comp"> <h2>Company Name: <span>{{ startupInfo?.companyName }}</span></h2></div>
+    <div class="comp">
+      <h2>
+        Company Name: <span>{{ startupInfo?.companyName }}</span>
+      </h2>
+    </div>
     <div class="info">
-      <!-- <div
-        >
-         <img src="./assets/icons/Asset 13.png" alt="" height="30px">
-        <h2>Company Name: </h2>
-       
-        <h4>{{ startupInfo?.companyName }}</h4></div
-      > -->
-        <div class="c"
-        >
-        
-          <img src="./assets/icons/Asset 14.png" alt="" height="30px">
-          <h2>Founder Name:</h2>
-        <h4>{{ startupInfo?.founder }}</h4></div
-      >
-        <div
-        class="c">
-         <img src="./assets/icons/Asset 30.png" alt="" height="30px">
-        <h2>Sectors: </h2>
-       
-        <h4>{{ startupInfo?.sector }}</h4></div
-      >
-      <div
-        class="c">
-         <img src="./assets/icons/Asset 31.png" alt="" height="30px">
-        <h2>Email: </h2>
-       
-        <h4><a href="mailto:{{ startupInfo?.email }}">{{ startupInfo?.email }}</a></h4></div
-      >
-    
-    
       <div class="c">
-          <img src="./assets/icons/Asset 13.png" alt="" height="30px">
-          <h2>Website:</h2>
-       <h4> <a href="{{ startupInfo?.website }}" target="_blank">{{ startupInfo?.website }}</a></h4></div
-      >
-      <div
-       class="c" >
-          <img src="./assets/icons/Asset 12.png" alt="" height="30px">
+        <img src="./assets/icons/Asset 14.png" alt="" height="30px" />
+        <h2>Founder Name:</h2>
+        <h4>{{ startupInfo?.founder }}</h4>
+      </div>
+      <div class="c">
+        <img src="./assets/icons/Asset 30.png" alt="" height="30px" />
+        <h2>Sectors:</h2>
+
+        <h4>{{ startupInfo?.sector }}</h4>
+      </div>
+      <div class="c">
+        <img src="./assets/icons/Asset 31.png" alt="" height="30px" />
+        <h2>Email:</h2>
+
+        <h4>
+          <a href="mailto:{{ startupInfo?.email }}">{{ startupInfo?.email }}</a>
+        </h4>
+      </div>
+
+      <div class="c">
+        <img src="./assets/icons/Asset 13.png" alt="" height="30px" />
+        <h2>Website:</h2>
+        <h4>
+          <a href="{{ startupInfo?.website }}" target="_blank">{{
+            startupInfo?.website
+          }}</a>
+        </h4>
+      </div>
+      <div class="c">
+        <img src="./assets/icons/Asset 12.png" alt="" height="30px" />
         <h2>City:</h2>
-        <h4>{{ startupInfo?.city }}</h4></div
-      >
-        <div
-        class="c">
-          <img src="./assets/icons/Asset 11.png" alt="" height="30px">
-          <h2>Year Of Establishment:</h2>
-        <h4>{{ startupInfo?.yearOfEstablishment }}</h4></div
-      >
-      <div
-       class="c" >
-          <img src="./assets/icons/Asset 10.png" alt="" height="30px">
-          <h2>Number Of employees:</h2>
-        <h4>{{ startupInfo?.numOfEmployees }}</h4></div
-      >
-    
-      
+        <h4>{{ startupInfo?.city }}</h4>
+      </div>
       <div class="c">
-          <img src="./assets/icons/Asset 9.png" alt="" height="30px">
+        <img src="./assets/icons/Asset 11.png" alt="" height="30px" />
+        <h2>Year Of Establishment:</h2>
+        <h4>{{ startupInfo?.yearOfEstablishment }}</h4>
+      </div>
+      <div class="c">
+        <img src="./assets/icons/Asset 10.png" alt="" height="30px" />
+        <h2>Number Of employees:</h2>
+        <h4>{{ startupInfo?.numOfEmployees }}</h4>
+      </div>
+
+      <div class="c">
+        <img src="./assets/icons/Asset 9.png" alt="" height="30px" />
         <h2>Phone Number:</h2>
-        <h4>{{ startupInfo?.phone }}</h4></div >
-    
+        <h4>{{ startupInfo?.phone }}</h4>
+      </div>
+    </div>
+    <div class="actions">
+      <button mat-stroked-button (click)="goBackToHome()">back</button>
+    </div>
   </div>
-  <div class="actions"><button mat-stroked-button (click)="goBackToHome()">back</button></div>
 </div>

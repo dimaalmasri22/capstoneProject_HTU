@@ -30,11 +30,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     private loader: LoadingService
   ) {}
   ngOnInit(): void {
+        this.loader.show();
     this.getStartups();
     this.getSectors();
+    this.loader.hide();
   }
 
   getStartups() {
+
     this.CRUDService.getStartup().subscribe((response) => {
       this.startups = response;
 

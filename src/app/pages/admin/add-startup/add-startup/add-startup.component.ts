@@ -68,8 +68,10 @@ export class AddStartupComponent implements OnInit , OnDestroy {
   }
   onChange(event: any, i: number, sector: string) {
     if (event.checked) {
+     
       this.addSector(sector);
     } else {
+     
       for (let i = 0; i < this.sectors.value.length; i++) {
         if (this.sectors.value[i] == sector) {
           this.sectors.removeAt(i);
@@ -82,7 +84,7 @@ export class AddStartupComponent implements OnInit , OnDestroy {
     if (file) {
       this.storage.uploadimage(file).subscribe((value) => {
         this.downloadUrl = value;
-        console.log(value);
+ 
       });
     }
   }

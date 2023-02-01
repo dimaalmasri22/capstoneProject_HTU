@@ -19,7 +19,6 @@ export class DeleteRequestComponent implements OnDestroy {
   ) {}
 
   confirm() {
-    console.log(this.data);
     //delete student
     this.startupsService.deleteRequest(this.data.id).subscribe((_) => {
       this.dialogRef.close(true);

@@ -82,47 +82,49 @@ export class AllStartupsComponent implements OnInit, OnDestroy {
       data: { id: id },
     });
     dialogRef.afterClosed().subscribe((result) => {
+      // refresh
       this.getStartups();
-      this.loader.hide();
+     
     });
   }
   // get sectors to filter
   getSectors() {
     this.CRUDService.getSector().subscribe((response) => {
       this.sectors = response;
+         
     });
   }
   filterStartups(sector: string) {
     this.CRUDService.filterStartups(sector).subscribe((response) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
-      this.loader.hide();
+   
     });
   }
   reshowStartups() {
     this.CRUDService.getStartup().subscribe((response) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
-      this.loader.hide();
+   
     });
   }
   // numbers  on cards
   getNoOfsectors() {
     this.CRUDService.getLengthSector().subscribe((response) => {
       this.NoOfSectors = response.length;
-      this.loader.hide();
+     
     });
   }
   getNoOfRequests() {
     this.CRUDService.getLength().subscribe((response) => {
       this.NoOfRequests = response.length;
-      this.loader.hide();
+    
     });
   }
   getNoOfstartups() {
     this.CRUDService.getLengthStartup().subscribe((response) => {
       this.NoOfStartups = response.length;
-      this.loader.hide();
+    
     });
   }
   ngOnDestroy(): void {

@@ -46,10 +46,10 @@ export class RequestsComponent implements OnInit, OnDestroy {
   }
   getStartups() {
     this.CRUDservice.getRequests().subscribe((response) => {
-      // this.startups = response;
-      this.loader.hide();
+     
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
+       this.loader.hide();
     });
   }
 

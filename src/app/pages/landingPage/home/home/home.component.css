@@ -68,9 +68,9 @@ img {
   position: relative;
   background: url(/assets/backgrounds/2998175d-56ec-4177-9b5d-9c9094911bf1.png)
     no-repeat;
-  background-size: cover;
+  background-size: 100%;
   background-position-y: -5rem;
-  min-height: 55vh;
+height: 400px;
   animation: fade-in 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   margin-top: 4rem;
   box-shadow: none;
@@ -256,5 +256,20 @@ opacity: 1;
   .contentHome {
     padding-left: 0;
     margin: 0;
+  }
+}
+@media (max-width:702px) {
+  .share {
+position: relative;
+bottom:0;
+top: 30px;
+border-radius: 0;
+width: 100%;
+height: 20px;
+padding:20px;
+display: flex;
+flex-direction: row-reverse;
+justify-content: center;
+overflow: auto;
   }
 }

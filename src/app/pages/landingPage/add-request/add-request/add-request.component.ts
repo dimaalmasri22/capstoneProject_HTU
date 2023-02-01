@@ -28,7 +28,6 @@ export class AddRequestComponent implements OnInit, OnDestroy {
   }
   form = this.fb.group({
     companyName: ['', [Validators.required]],
-    // logo: ['', [Validators.required, secureUrlValidatorFactory('https')]],
     city: ['', [Validators.required]],
     founder: [''],
     numOfEmployees: ['', [Validators.min(0)]],
@@ -67,7 +66,7 @@ export class AddRequestComponent implements OnInit, OnDestroy {
     });
   }
   onChange(event: any, i: number, sector: string) {
-    console.log(event.checked);
+   
     if (event.checked) {
       this.addSector(sector);
     } else {
@@ -80,7 +79,7 @@ export class AddRequestComponent implements OnInit, OnDestroy {
   }
 
   upload(event: Event) {
-    console.log(event);
+  
 
     let file = (event.target as HTMLInputElement)?.files?.[0];
     if (file) {

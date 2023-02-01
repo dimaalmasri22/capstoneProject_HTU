@@ -9,7 +9,7 @@ import { CRUDService } from 'src/app/lib/services/storage/crud.service';
   templateUrl: './startup-info.component.html',
   styleUrls: ['./startup-info.component.css'],
 })
-export class StartupInfoComponent implements OnInit , OnDestroy {
+export class StartupInfoComponent implements OnInit, OnDestroy {
   startup$!: Observable<startup | undefined>;
   startupInfo?: startup;
   id!: string;
@@ -19,22 +19,22 @@ export class StartupInfoComponent implements OnInit , OnDestroy {
     private route: ActivatedRoute,
     private CRUDservice: CRUDService,
     private router: Router,
- 
-  ) {
-  
-  }
+    private loader:LoadingService
+  ) {}
 
   ngOnInit() {
-      this.startup$ = this.route.paramMap.pipe(
-        switchMap((value) => {
-          this.id = value.get('id') + '';
-          return this.CRUDservice.getStartupById(this.id);
-        })
-      );
+      this.loader.show();
+    this.startup$ = this.route.paramMap.pipe(
+      switchMap((value) => {
+        this.id = value.get('id') + '';
+        return this.CRUDservice.getStartupById(this.id);
+      })
+    );
     this.startup$.subscribe((value) => {
       this.startupInfo = value;
-
     });
+          this.loader.hide();
+
   }
   goBackToHome() {
     this.router.navigate(['/']);

@@ -1,117 +1,107 @@
-<div  class="content"  >
-  <!-- (mousemove)="position($event)" -->
-  
-  <div class="intro" >
-    <mat-card class="card " [class.fadeIn1]="fade">
+<div class="content">
+  <div class="intro">
+    <mat-card class="card" [class.fadeIn1]="fade">
       <h1 [class.fadeIn2]="fade">Your Entryway To Startups In Jordan</h1>
-     
     </mat-card>
   </div>
-     <div class="colorBackground"></div>
+  <div class="colorBackground"></div>
 
   <div class="contentHome">
-     
-        <div class="filterContainer" >
-          
-          <div class="filters">
-    <mat-form-field appearance="outline" class="filter">
-      <mat-label>Filter by sector</mat-label>
-      <mat-select>
-       <mat-option  [value]="undefined" (click)="reshowStartupsS()"
-          >all</mat-option
-        >
-        <mat-option
-          *ngFor="let sector of sectors"
-          [value]="sector.sector "
-          (click)="filterSector(sector.sector)"
-          
-        >
-          {{ sector.sector  }} 
-        </mat-option>
-      </mat-select>
-    </mat-form-field >
-    <mat-form-field appearance="outline">
-<mat-label>Filter by cities</mat-label>
-      <mat-select>
+    <div class="filterContainer">
+      <div class="filters">
+        <mat-form-field appearance="outline" class="filter">
+          <mat-label>Filter by sector</mat-label>
+          <mat-select>
+            <mat-option [value]="undefined" (click)="reshowStartupsS()"
+              >all</mat-option
+            >
+            <mat-option
+              *ngFor="let sector of sectors"
+              [value]="sector.sector"
+              (click)="filterSector(sector.sector)"
+            >
+              {{ sector.sector }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Filter by cities</mat-label>
+          <mat-select>
+            <mat-option selected [value]="undefined" (click)="reshowStartupsC()"
+              >all</mat-option
+            >
+            <mat-option
+              *ngFor="let city of cities"
+              [value]="city"
+              (click)="filterCity(city)"
+            >
+              {{ city }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Filter by number of employees</mat-label>
+          <mat-select>
+            <mat-option selected [value]="undefined" (click)="reshowStartupsE()"
+              >all</mat-option
+            >
+            <mat-option
+              *ngFor="let employee of NoOfEmployees"
+              [value]="employee"
+              (click)="filterEmployees(employee)"
+            >
+              {{ employee }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Filter by year</mat-label>
+          <mat-select>
+            <mat-option selected [value]="undefined" (click)="reshowStartupsY()"
+              >all</mat-option
+            >
+            <mat-option
+              *ngFor="let Year of YearOfEstablishment"
+              [value]="Year"
+              (click)="filterYear(Year)"
+            >
+              {{ Year }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="filtering()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
 
-         <mat-option selected [value]="undefined" (click)="reshowStartupsC()"
-          >all</mat-option
-        >
-        <mat-option
-          *ngFor="let city of cities"
-          [value]="city" 
-          (click)="filterCity(city)"
-        >
-          {{ city }} 
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-     <mat-form-field appearance="outline">
-<mat-label>Filter by number of employees</mat-label>
-      <mat-select>
-      <mat-option selected [value]="undefined" (click)="reshowStartupsE()"
-          >all</mat-option
-        >
-        <mat-option
-          *ngFor="let employee of NoOfEmployees"
-          [value]="employee" 
-        (click)="filterEmployees(employee)"
-          
-        >
-          {{ employee }} 
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-     <mat-form-field appearance="outline">
-<mat-label>Filter by year</mat-label>
-      <mat-select>
-        <mat-option selected [value]="undefined" (click)="reshowStartupsY()"
-          >all</mat-option>
-        <mat-option
-          *ngFor="let Year of YearOfEstablishment"
-          [value]="Year" 
-         (click)="filterYear(Year)"
-          
-        >
-          {{ Year }} 
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  <button mat-raised-button (click)="filtering()"><mat-icon>search</mat-icon></button>
-  </div>
- </div>
-   
     <div class="container">
       <div class="grid-wrapper">
-        <mat-card    *ngFor="let startup of startups" class="cards" 
-          >
-         <div class="containers">
-          <a [routerLink]="['startupInfo',startup.id]">
-            <img mat-card-image src="{{ startup.logo }}" />
-            
-              <div class="btn"><button mat-raised-button>More</button></div>
-          
-          </a>
-          </div>
+        <mat-card *ngFor="let startup of startups" class="cards">
+          <div class="containers">
+            <a [routerLink]="['startupInfo', startup.id]">
+              <img mat-card-image src="{{ startup.logo }}" />
 
-      
+              <div class="btn"><button mat-raised-button>More</button></div>
+            </a>
+          </div>
         </mat-card>
       </div>
     </div>
   </div>
-  <div  class="hideShare" [class.share]="show"
-  >  
-  <share-buttons theme="circles-dark"  
-    [include]="[ 'facebook', 'email','linkedin',  'whatsapp']"
-    [showIcon]="true"
-    [showText]="false"
-    url="https://project-htu-2d945.firebaseapp.com/"
-    description="Angular Share Buttons"
-    twitterAccount="rodrigokamada"
-    class="pt-5"
+  <div class="hideShare" [class.share]="show">
+    <share-buttons
+      theme="circles-dark"
+      [include]="['facebook', 'email', 'linkedin', 'whatsapp']"
+      [showIcon]="true"
+      [showText]="false"
+      url="https://project-htu-2d945.firebaseapp.com/"
+      description="Angular Share Buttons"
+      twitterAccount="rodrigokamada"
+      class="pt-5"
     >
-  </share-buttons>
-<h1>share</h1>
-<mat-icon>add</mat-icon>
-</div>
+    </share-buttons>
+    <h1>share</h1>
+    <mat-icon>add</mat-icon>
+  </div>
 </div>

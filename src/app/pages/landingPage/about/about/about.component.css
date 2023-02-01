@@ -69,6 +69,8 @@ img {
   width: 50%;
   color: var(--davys-grey);
 }
+
+/* responsivity */
 @media (max-width: 660px) {
   .card h1 {
     width: 100%;

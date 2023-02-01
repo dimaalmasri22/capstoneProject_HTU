@@ -38,9 +38,11 @@ export class EditComponent implements OnInit, OnDestroy {
     );
     this.startup$.subscribe((value) => {
       this.startup = value;
-      this.loader.hide();
+   
       this.getSectors(this.startup?.sector ?? []);
+      
     });
+       this.loader.hide();
   }
   editStartup(startup: any, sectorsStartup: any): void {
     if (this.startup && this.startup.sector) {
@@ -48,6 +50,7 @@ export class EditComponent implements OnInit, OnDestroy {
         .filter((val) => val.isSelected)
         .map((e) => e.sector.sector);
     }
+  
     if (this.downloadUrl) {
       this.CRUDservice.updateStartup(this.id, {
         ...startup,
@@ -81,7 +84,7 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   upload(event: Event) {
-    // console.log(event);
+  
     let file = (event.target as HTMLInputElement)?.files?.[0];
     if (file) {
       this.storage.uploadimage(file).subscribe((value) => {

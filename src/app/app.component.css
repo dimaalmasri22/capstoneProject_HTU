@@ -1,6 +1,6 @@
  
 .overlay {
-    position: absolute;
+    position: fixed;
     z-index: 3;
     backdrop-filter: blur(2px);
     height: 100vh;
