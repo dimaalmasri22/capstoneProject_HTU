@@ -21,9 +21,7 @@ img {
   transform: scale(1.03);
   cursor: pointer;
 }
-/* effect on cards */
 
-/* end of effect */
 .container {
   display: flex;
   justify-content: center;
@@ -66,14 +64,16 @@ img {
 /* intro */
 .intro .card {
   position: relative;
-  background: url(/assets/backgrounds/2998175d-56ec-4177-9b5d-9c9094911bf1.png)
+  background: url(/assets/backgrounds/5d8ad049-9007-4f6f-9031-bb51708b081f.jpeg)
     no-repeat;
-  background-size: 100%;
-  background-position-y: -5rem;
-height: 400px;
+  
+  background-position-y: -9rem;
+  background-position-x:-9rem ;
+min-height: 65vh;
   animation: fade-in 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   margin-top: 4rem;
   box-shadow: none;
+  
 }
 @keyframes fade-in {
   0% {
@@ -147,18 +147,18 @@ height: 400px;
 }
 
 
-
-@media (max-width: 660px) {
+ 
+ @media (max-width: 488px) {
   .card h1 {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 500;
   }
-}
+} 
 @media (max-height: 500px) {
   .card h1 {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 500;
   }
 }
@@ -254,8 +254,9 @@ opacity: 1;
 }
 @media (max-width:700px) {
   .contentHome {
-    padding-left: 0;
-    margin: 0;
+padding-right: 0;
+padding-left: 0;
+  
   }
 }
 @media (max-width:702px) {
@@ -271,5 +272,12 @@ display: flex;
 flex-direction: row-reverse;
 justify-content: center;
 overflow: auto;
+  }
+}
+@media (max-width:721px) {
+  .intro .card {
+      
+  background-position-y: -15rem;
+  background-position-x:-20rem ;
   }
 }

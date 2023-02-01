@@ -89,11 +89,12 @@ a {
 /* intro */
 .intro .card {
   position: relative;
-  background: url(/assets/backgrounds/2998175d-56ec-4177-9b5d-9c9094911bf1.png)
+  background: url(/assets/backgrounds/5d8ad049-9007-4f6f-9031-bb51708b081f.jpeg)
     no-repeat;
-  background-size: cover;
-  background-position-y: -5rem;
-  min-height: 55vh;
+ background-position-y: -9rem;
+  background-position-x:-9rem ;
+min-height: 60vh;
+
   animation: fade-in 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   margin-top: 4rem;
   box-shadow: none;
@@ -122,15 +123,22 @@ a {
 @media (max-width: 660px) {
   .card h1 {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 500;
   }
 }
 @media (max-height: 500px) {
   .card h1 {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 500;
+  }
+}
+@media (max-width:721px) {
+  .intro .card {
+      
+  background-position-y: -15rem;
+  background-position-x:-20rem ;
   }
 }
 
