@@ -1,0 +1,22 @@
+.container {
+    padding: 3rem;
+    
+}
+.close {
+  position:absolute;
+  top: 0.5rem;
+
+  right: 0.5rem;
+  cursor:pointer;
+ background-color: white;
+} 
+h1{
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+.inputField {
+    width: 100%;
+}
+p {
+    color: red;
+}

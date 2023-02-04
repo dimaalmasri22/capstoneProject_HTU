@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeaderModule } from './lib/components/header/header.module';
 import { SpinnerComponent } from './lib/components/spinner/spinner.component';
 import { SpinnerModule } from './lib/components/spinner/spinner.module';
+import { DeleteSectorComponent } from './pages/admin/delete-sector/delete-sector.component';
 
 
 
@@ -27,6 +28,7 @@ import { SpinnerModule } from './lib/components/spinner/spinner.module';
     AppComponent,
     AddSectorComponent,
     PageNotFoundComponent,
+    DeleteSectorComponent,
    
   ],
   imports: [

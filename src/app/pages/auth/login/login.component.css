@@ -1,7 +1,7 @@
 .container {
-  position:absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position:relative;
+  top: 50vh;
+  transform: translateY(-30vh);
   width: 100%;
 }
 form {
@@ -54,4 +54,11 @@ form {
   padding: 0;
 }
 
+
+}
+@media (max-height:1000px){
+.container {
+
+   margin-bottom: 10rem;
+}
 }

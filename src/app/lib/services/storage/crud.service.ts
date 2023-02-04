@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  DocumentChangeAction,
 } from '@angular/fire/compat/firestore';
 import { from, map, Observable } from 'rxjs';
 import { Sectors } from '../../interfaces/sector';
@@ -41,7 +40,9 @@ export class CRUDService {
   updateStartup(id: string, startup: startup) {
     return from(this.startupCollection.doc(id).update({ ...startup }));
   }
-  // Sectors CRUD
+
+  // Sectors CRUD--------------------------------------------------------------------------------------------------------------------------------
+
   addSector(sector: Sectors) {
     let addSector = this.sectorCollection?.add(sector);
     return from(addSector);
@@ -49,8 +50,11 @@ export class CRUDService {
   getSector(): Observable<Sectors[]> {
     return this.sectorCollection.valueChanges({ idField: 'id' });
   }
+DeleteSector(id:string){
+   return from(this.sectorCollection.doc(id).delete());
+}
+  // requests--------------------------------------------------------------------------------------------------------------------------------
 
-  // requests
   deleteRequest(id: string) {
     return from(this.requestCollection.doc(id).delete());
   }
@@ -73,8 +77,8 @@ export class CRUDService {
   getLengthStartup() {return this.sectorCollection.valueChanges({ idField: 'id' });}
 
   // filtering
-  filterStartups(selectedSector: string): Observable<startup[]> {
-    return this.firestore
+  filterStartups(selectedSector: string): Observable<startup[]>  {
+  return this.firestore
       .collection<startup>('startups', (ref) =>
         ref.where('sector', 'array-contains', selectedSector)
       )

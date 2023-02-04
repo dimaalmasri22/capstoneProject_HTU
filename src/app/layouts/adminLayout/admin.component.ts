@@ -9,6 +9,7 @@ import { AddSectorComponent } from 'src/app/pages/admin/add-sector/add-sector.co
 import { startup } from 'src/app/lib/interfaces/startup';
 import autoTable from 'jspdf-autotable';
 import { LoadingService } from 'src/app/lib/services/loading/loading.service';
+import { DeleteSectorComponent } from 'src/app/pages/admin/delete-sector/delete-sector.component';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -44,6 +45,16 @@ export class AdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/admin']);
     });
+  }
+  deletingSector(){
+     let dialogRef = this.dialog.open(DeleteSectorComponent, {
+       width: '150%',
+       height: '600px',
+
+     });
+     dialogRef.afterClosed().subscribe(() => {
+       this.router.navigate(['/admin']);
+     });
   }
   logout() {
     this.auth.signOut().then(() => {

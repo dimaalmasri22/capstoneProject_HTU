@@ -23,6 +23,10 @@
      <a  class="addSectorStyle" (click)="addingSector()" (click)="drawer.toggle()"> <mat-icon>add</mat-icon><p>Sector</p></a>
       </div>
        <div>
+       
+     <a  class="addSectorStyle" (click)="deletingSector()" (click)="drawer.toggle()"> <mat-icon>delete</mat-icon><p>Sector</p></a>
+      </div>
+       <div>
         <a class="nav-link" routerLink="/admin/Requests" (click)="drawer.toggle()"> <span> <mat-icon class="notifications">notifications</mat-icon><span *ngIf="NoOfRequests!=0"> {{NoOfRequests}}</span></span><p>Requests </p></a>
 
       </div>

@@ -30,11 +30,8 @@ export class AllStartupsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [
     'Logo',
     'Company Name',
-    'Founder name',
     'City',
     'Sector',
-    'Year Of Establishment',
-    'Number Of Employees',
     'Website',
     'Email',
     'Phone number',
