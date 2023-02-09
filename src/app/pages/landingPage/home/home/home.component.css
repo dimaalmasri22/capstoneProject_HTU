@@ -35,8 +35,8 @@
   cursor: pointer;
 }
 img {
-  height: 100%;
-  width: 100%;
+  height: 150px;
+  width: 150px;
   object-fit: contain;
 }
 .btn {
@@ -65,15 +65,19 @@ img {
 .containers:hover {
   opacity: 0.8;
 }
+@media (max-width:1518px){
+
+.grid-wrapper mat-card{
+  padding: 3.5rem;
+
+}
+}
 @media (max-width: 700px) {
   .contentHome {
     padding-right: 0;
     padding-left: 0;
   }
-}
-
-@media (max-width: 700px) {
-  .grid-wrapper {
+   .grid-wrapper {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -82,14 +86,9 @@ img {
     grid-column: span 2;
   }
 }
-@media (max-width: 360px) {
-  .grid-wrapper mat-card {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: scroll;
-  }
-}
+
+
+
 
 /* intro */
 .intro .card {
